@@ -17,9 +17,10 @@
   color-scheme: light dark;
   --font-title: 'Bricolage Grotesque', Inter, sans-serif;
   --font-text: Inter, system-ui, sans-serif;
-  /* Mockups are 390x844 with 64px top / 34px bottom; on device the safe areas take over. */
-  --pad-top: max(64px, calc(env(safe-area-inset-top) + 20px));
-  --pad-bottom: max(34px, calc(env(safe-area-inset-bottom) + 12px));
+  /* Mockups draw the status bar inside the frame; on device the page already starts below it
+     (status-bar-style "default", or a browser's address bar), so add only the safe area. */
+  --pad-top: calc(env(safe-area-inset-top) + 20px);
+  --pad-bottom: calc(env(safe-area-inset-bottom) + 12px);
 }
 
 * { box-sizing: border-box; }
@@ -51,7 +52,7 @@ a { color: var(--accent); text-decoration: none; }
 }
 
 /* Install (design/Install.dc.html) */
-.install { padding-top: max(72px, calc(env(safe-area-inset-top) + 24px)); padding-left: max(24px, env(safe-area-inset-left));
+.install { padding-top: calc(env(safe-area-inset-top) + 24px); padding-left: max(24px, env(safe-area-inset-left));
   padding-right: max(24px, env(safe-area-inset-right)); padding-bottom: 0; }
 .install-head { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .app-tile {
@@ -135,7 +136,7 @@ a { color: var(--accent); text-decoration: none; }
 .promo-cancel { align-self: center; margin-top: -8px; }
 .view { flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; display: flex; flex-direction: column; }
 .view-head {
-  padding: max(58px, calc(env(safe-area-inset-top) + 14px)) max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
+  padding: calc(env(safe-area-inset-top) + 20px) max(20px, env(safe-area-inset-right)) 0 max(20px, env(safe-area-inset-left));
   display: flex; flex-direction: column; gap: 14px;
 }
 .head-row { display: flex; justify-content: space-between; align-items: center; min-height: 44px; }
@@ -304,7 +305,7 @@ a { color: var(--accent); text-decoration: none; }
 /* Tab bar */
 .tabbar {
   flex-shrink: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); background: var(--surface); border-top: 1px solid var(--tab-line);
-  padding: 8px max(12px, env(safe-area-inset-right)) max(30px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
+  padding: 8px max(12px, env(safe-area-inset-right)) max(10px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left));
 }
 .tabbar a {
   height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; position: relative;
