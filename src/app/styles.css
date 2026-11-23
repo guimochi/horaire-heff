@@ -11,6 +11,10 @@
   --cancelled-soft: #FDECEA;
   --modified: #8A3A06;
   --modified-soft: #FFF0E3;
+  --accent-fill: #2447D6; /* blue behind white text */
+  --accent-fill-active: #1A36A8;
+  --notif-card: rgba(255, 255, 255, 0.94);
+  color-scheme: light dark;
   --font-title: 'Bricolage Grotesque', Inter, sans-serif;
   --font-text: Inter, system-ui, sans-serif;
   /* Mockups are 390x844 with 64px top / 34px bottom; on device the safe areas take over. */
@@ -36,10 +40,10 @@ a { color: var(--accent); text-decoration: none; }
 .step-label { font-size: 13px; font-weight: 600; color: var(--muted); }
 
 .btn-primary {
-  min-height: 56px; width: 100%; flex-shrink: 0; padding: 8px 16px; text-align: center; border: none; border-radius: 18px; background: var(--accent); color: #FFFFFF;
+  min-height: 56px; width: 100%; flex-shrink: 0; padding: 8px 16px; text-align: center; border: none; border-radius: 18px; background: var(--accent-fill); color: #FFFFFF;
   display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 600; cursor: pointer;
 }
-.btn-primary:active { background: var(--accent-hover); }
+.btn-primary:active { background: var(--accent-fill-active); }
 .btn-primary:disabled { opacity: 0.45; cursor: default; }
 .btn-link {
   min-height: 44px; border: none; background: transparent; display: flex; align-items: center; justify-content: center;
@@ -51,7 +55,7 @@ a { color: var(--accent); text-decoration: none; }
   padding-right: max(24px, env(safe-area-inset-right)); padding-bottom: 0; }
 .install-head { display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
 .app-tile {
-  width: 72px; height: 72px; border-radius: 18px; background: var(--accent); color: #FFFFFF;
+  width: 72px; height: 72px; border-radius: 18px; background: var(--accent-fill); color: #FFFFFF;
   display: flex; flex-direction: column; align-items: center; justify-content: center; box-shadow: 0 8px 20px rgba(36, 71, 214, 0.25);
 }
 .app-tile-day { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; opacity: 0.85; }
@@ -68,7 +72,7 @@ a { color: var(--accent); text-decoration: none; }
 }
 .install-step-text { flex: 1; font-size: 15px; line-height: 1.35; }
 .mini-icon {
-  width: 24px; height: 24px; border-radius: 6px; background: var(--accent); color: #FFFFFF;
+  width: 24px; height: 24px; border-radius: 6px; background: var(--accent-fill); color: #FFFFFF;
   font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center;
 }
 .install .btn-link { margin-top: 18px; align-self: center; }
@@ -101,7 +105,7 @@ a { color: var(--accent); text-decoration: none; }
   font-family: var(--font-text); font-size: 16px; font-weight: 600; cursor: pointer; background: var(--surface); color: var(--ink); text-align: left;
 }
 .promo-row span { flex: 1; }
-.promo-row[aria-pressed='true'] { background: var(--accent); color: #FFFFFF; }
+.promo-row[aria-pressed='true'] { background: var(--accent-fill); color: #FFFFFF; }
 .calm { margin: 16px 4px 0 4px; font-size: 15px; line-height: 1.4; color: var(--muted); }
 .calm-box { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
 .calm-box .btn-link { padding: 0 4px; font-size: 15px; }
@@ -109,9 +113,9 @@ a { color: var(--accent); text-decoration: none; }
 /* Notifs (design/Notifs.dc.html) */
 .notifs { gap: 22px; }
 .notif-preview { display: flex; flex-direction: column; gap: 8px; padding: 18px 14px; border-radius: 26px; background: #1C2240; }
-.notif-card { background: rgba(255, 255, 255, 0.94); border-radius: 18px; padding: 11px 13px; display: flex; gap: 11px; align-items: flex-start; }
+.notif-card { background: var(--notif-card); border-radius: 18px; padding: 11px 13px; display: flex; gap: 11px; align-items: flex-start; }
 .notif-icon {
-  width: 34px; height: 34px; flex-shrink: 0; border-radius: 9px; background: var(--accent); color: #FFFFFF;
+  width: 34px; height: 34px; flex-shrink: 0; border-radius: 9px; background: var(--accent-fill); color: #FFFFFF;
   font-size: 13px; font-weight: 700; display: flex; align-items: center; justify-content: center;
 }
 .notif-body { flex: 1; display: flex; flex-direction: column; gap: 1px; font-size: 14px; line-height: 1.3; }
@@ -125,7 +129,7 @@ a { color: var(--accent); text-decoration: none; }
 .notifs-error { margin: 0; text-align: center; font-size: 14px; line-height: 1.4; color: var(--cancelled); }
 
 /* App views (design/Main|Week|Changes.dc.html). Header and content scroll; the tab bar stays at the bottom. */
-:root { --line: #DEDCD5; --row-line: #EEECE6; --tab-line: #E4E2DC; --dot: #B4500B; }
+:root { --line: #DEDCD5; --row-line: #EEECE6; --tab-line: #E4E2DC; --dot: #B4500B; --badge: #B4500B; }
 .app { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
 .app .promo { height: auto; flex: 1; min-height: 0; }
 .promo-cancel { align-self: center; margin-top: -8px; }
@@ -161,7 +165,7 @@ a { color: var(--accent); text-decoration: none; }
 .daybar-num { font-size: 18px; font-weight: 600; }
 .daybar button.is-empty { background: transparent; color: var(--placeholder); }
 .daybar button.is-empty .daybar-wd { color: inherit; }
-.daybar button.is-selected { background: var(--ink); color: #FFFFFF; }
+.daybar button.is-selected { background: var(--ink); color: var(--bg); }
 .daybar button.is-selected .daybar-wd { color: inherit; opacity: 0.75; }
 .daybar-dot { position: absolute; top: 8px; right: 9px; width: 7px; height: 7px; border-radius: 50%; background: var(--dot); }
 
@@ -188,7 +192,7 @@ a { color: var(--accent); text-decoration: none; }
 .pills { display: flex; flex-wrap: wrap; gap: 6px; }
 .pill { font-size: 13px; font-weight: 600; padding: 4px 10px; border-radius: 999px; white-space: nowrap; }
 .pill-sm { font-size: 12px; padding: 3px 8px; }
-.pill-now { color: #FFFFFF; background: var(--accent); }
+.pill-now { color: #FFFFFF; background: var(--accent-fill); }
 .pill-cancelled { color: var(--cancelled); background: var(--cancelled-soft); }
 .pill-modified { color: var(--modified); background: var(--modified-soft); }
 .pill-past { color: var(--muted); background: var(--bg); }
@@ -285,10 +289,17 @@ a { color: var(--accent); text-decoration: none; }
   position: absolute; top: 2px; left: 2px; width: 27px; height: 27px; border-radius: 50%; background: #FFFFFF;
   box-shadow: 0 2px 4px rgba(21, 23, 28, 0.2); transition: transform 0.2s;
 }
-.switch.is-on { background: var(--accent); }
+.switch.is-on { background: var(--accent-fill); }
 .switch.is-on > span { transform: translateX(20px); }
 .settings-row:disabled .switch { opacity: 0.5; }
 .settings-hint { margin: 0 4px; font-size: 14px; line-height: 1.4; color: var(--muted); }
+.settings-group { margin: 12px 4px 0 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
+.segmented { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; background: var(--surface); border-radius: 16px; }
+.segmented button {
+  min-height: 44px; border: none; border-radius: 12px; background: transparent; color: var(--muted);
+  font-family: var(--font-text); font-size: 14px; font-weight: 600; cursor: pointer;
+}
+.segmented button[aria-pressed='true'] { background: var(--ink); color: var(--bg); }
 
 /* Tab bar */
 .tabbar {
@@ -301,6 +312,30 @@ a { color: var(--accent); text-decoration: none; }
 }
 .tabbar a[aria-current='page'] { color: var(--accent); font-weight: 600; }
 .tab-badge {
-  position: absolute; top: 2px; left: 54%; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: var(--dot);
+  position: absolute; top: 2px; left: 54%; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px; background: var(--badge);
   color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center;
 }
+
+/* Dark theme, palette « Graphite chaud » (docs/superpowers/specs/2026-11-23-theme-sombre-design.md).
+   Same block twice: forced by Réglages (data-theme), or the iPhone's setting when nothing is forced. */
+:root[data-theme='clair'] { color-scheme: light; }
+:root[data-theme='sombre'] {
+  color-scheme: dark;
+  --bg: #121316; --ink: #F2F1ED; --muted: #A4A7B0; --placeholder: #8A8D96; --surface: #1C1D21;
+  --accent: #8CA2FF; --accent-hover: #B0C0FF; --accent-soft: #232B4A; --accent-fill: #3553E0; --accent-fill-active: #2A44C0;
+  --cancelled: #FF9C92; --cancelled-soft: #3A1F1D; --modified: #FFB67D; --modified-soft: #3A2918;
+  --line: #2E3036; --row-line: #28292E; --tab-line: #2E3036; --dot: #F08A3C; --notif-card: rgba(44, 45, 50, 0.94);
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='clair']) {
+    color-scheme: dark;
+    --bg: #121316; --ink: #F2F1ED; --muted: #A4A7B0; --placeholder: #8A8D96; --surface: #1C1D21;
+    --accent: #8CA2FF; --accent-hover: #B0C0FF; --accent-soft: #232B4A; --accent-fill: #3553E0; --accent-fill-active: #2A44C0;
+    --cancelled: #FF9C92; --cancelled-soft: #3A1F1D; --modified: #FFB67D; --modified-soft: #3A2918;
+    --line: #2E3036; --row-line: #28292E; --tab-line: #2E3036; --dot: #F08A3C; --notif-card: rgba(44, 45, 50, 0.94);
+  }
+}
+
+/* Inline SVGs in onboarding: stroke follows the theme. */
+.icon-accent { color: var(--accent); }
+.icon-muted { color: var(--muted); }

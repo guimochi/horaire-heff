@@ -3,7 +3,7 @@ import { promoLabel } from '../store';
 import { subscribe } from '../push';
 
 const Check = () => (
-  <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2447D6" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
+  <svg aria-hidden="true" class="icon-accent" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5" /></svg>
 );
 
 const Example = ({ title, when, text }: { title: string; when: string; text: string }) => (

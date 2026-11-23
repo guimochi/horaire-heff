@@ -24,12 +24,12 @@ export function Install() {
         <li>
           <span class="install-num">1</span>
           <span class="install-step-text">Touche <strong>Partager</strong> en bas de Safari</span>
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2447D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4" /><path d="M7 11H6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" /></svg>
+          <svg aria-hidden="true" class="icon-accent" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4" /><path d="M7 11H6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1" /></svg>
         </li>
         <li>
           <span class="install-num">2</span>
           <span class="install-step-text">Choisis <strong>Sur l'écran d'accueil</strong></span>
-          <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2447D6" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4" /><path d="M12 8v8M8 12h8" /></svg>
+          <svg aria-hidden="true" class="icon-accent" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4" /><path d="M12 8v8M8 12h8" /></svg>
         </li>
         <li>
           <span class="install-num">3</span>

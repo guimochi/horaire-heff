@@ -1,8 +1,8 @@
 // localStorage can throw (private mode, blocked storage): reads fall back to null, writes are dropped.
-function read(key: string): string | null {
+export function read(key: string): string | null {
   try { return localStorage.getItem(key); } catch { return null; }
 }
-function write(key: string, v: string | null): void {
+export function write(key: string, v: string | null): void {
   try { v === null ? localStorage.removeItem(key) : localStorage.setItem(key, v); } catch { /* storage unavailable */ }
 }
 

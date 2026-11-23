@@ -37,7 +37,7 @@ export function Promo({ initial, onDone, inSettings = false, onCancel }: {
       </div>
 
       <label class="search">
-        <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5C6070" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
+        <svg aria-hidden="true" class="icon-muted" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7" /><path d="M20 20l-3.5-3.5" /></svg>
         <span class="sr-only">Rechercher une promotion</span>
         <input type="search" value={q} onInput={(e) => setQ(e.currentTarget.value)} placeholder="Ex. BA3 EPS, MATH, 3 SC…"
           autocomplete="off" autocapitalize="off" spellcheck={false} enterkeyhint="search" />

@@ -4,8 +4,15 @@ import { notificationPermission, promoLabel } from '../store';
 import { currentSubscription, subscribe, unsubscribe } from '../push';
 import { Promo } from '../onboarding/Promo';
 import { Icon } from '../components/Icon';
+import { getTheme, setTheme, type Theme } from '../theme';
 
 type Notif = 'loading' | 'on' | 'off' | 'busy' | 'unsupported' | 'denied';
+
+const THEMES: [Theme, string, string][] = [
+  ['auto', 'Auto', "Suit le réglage de l'iPhone."],
+  ['clair', 'Clair', "Toujours clair, même quand l'iPhone est en mode sombre."],
+  ['sombre', 'Sombre', "Toujours sombre, même quand l'iPhone est en mode clair."],
+];
 
 const HINT: Partial<Record<Notif, string>> = {
   unsupported: "Les notifications ne sont pas disponibles ici. Sur iPhone, ouvre l'app depuis son icône sur l'écran d'accueil.",
@@ -17,6 +24,8 @@ export function Settings({ promo, onPromo }: { promo: string; onPromo: (p: strin
   const [notif, setNotif] = useState<Notif>('loading');
 
   const [failed, setFailed] = useState(false);
+  const [theme, setThemeState] = useState<Theme>(getTheme);
+  const pickTheme = (t: Theme) => { setTheme(t); setThemeState(t); };
 
   // Real state (ruling R17): on only when a push subscription exists, re-read after every attempt.
   const refresh = () => {
@@ -75,6 +84,14 @@ export function Settings({ promo, onPromo }: { promo: string; onPromo: (p: strin
         </ul>
         {failed && <p class="settings-hint" role="alert">Ça n'a pas marché. Vérifie ta connexion et réessaie.</p>}
         {HINT[notif] && <p class="settings-hint" role="status">{HINT[notif]}</p>}
+
+        <h2 class="settings-group">Apparence</h2>
+        <div class="segmented" role="group" aria-label="Thème">
+          {THEMES.map(([t, label]) => (
+            <button type="button" key={t} aria-pressed={theme === t} onClick={() => pickTheme(t)}>{label}</button>
+          ))}
+        </div>
+        <p class="settings-hint">{THEMES.find(([t]) => t === theme)![2]}</p>
       </main>
     </div>
   );
