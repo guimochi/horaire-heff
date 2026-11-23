@@ -18,7 +18,7 @@ Relie le projet au repo GitHub, puis règle :
 - commande de build : `npm run build` ;
 - dossier de sortie : `dist` ;
 - version de Node : 22 (le fichier `.node-version` du repo la donne, sinon variable `NODE_VERSION=22`) ;
-- variable d'environnement `VITE_VAPID_PUBLIC_KEY` : la clé publique VAPID, à définir pour **Production et Preview** (sinon le build de preview échoue, voir plus bas) ;
+- variable `VITE_VAPID_PUBLIC_KEY` : la clé publique VAPID, dans `[vars]` de `wrangler.toml` (Pages lit ce fichier et ignore alors les variables du tableau de bord) ;
 - secret `ADMIN_TOKEN` : une valeur aléatoire, par exemple `openssl rand -hex 32` ;
 - liaison KV `HORAIRE` vers le namespace créé à l'étape 1.
 
@@ -31,10 +31,10 @@ Dans Settings, Secrets and variables, Actions :
 | Secret | Valeur |
 | --- | --- |
 | `ADMIN_TOKEN` | le même que sur Pages |
-| `VAPID_PUBLIC_KEY` | la clé publique VAPID, **identique** à `VITE_VAPID_PUBLIC_KEY` sur Pages |
+| `VAPID_PUBLIC_KEY` | la clé publique VAPID, **identique** à `VITE_VAPID_PUBLIC_KEY` dans `wrangler.toml` |
 | `VAPID_PRIVATE_KEY` | la clé privée VAPID |
 | `VAPID_SUBJECT` | `mailto:` suivi d'une adresse de contact |
-| `API_BASE` | l'URL du site, par exemple `https://horaire.pages.dev` |
+| `API_BASE` | l'URL du site, par exemple `https://horaire-heff.pages.dev` |
 
 Si les deux clés publiques diffèrent, les abonnements sont créés avec une clé et les envois signés avec l'autre : aucune notification n'arrive.
 

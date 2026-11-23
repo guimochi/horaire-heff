@@ -1,7 +1,11 @@
-name = "horaire"
+name = "horaire-heff"
 compatibility_date = "2026-11-01"
 pages_build_output_dir = "dist"
 
 [[kv_namespaces]]
 binding = "HORAIRE"
 id = "166d14ac36674544a84d15b0e1a3c6f1"
+
+[vars]
+# Public by design (sent to every browser); must equal the VAPID_PUBLIC_KEY GitHub secret.
+VITE_VAPID_PUBLIC_KEY = "BOZPIHz05aFwfdDtJAuuP2kWK4Nk_ZMf8Okhau9rHaFzhCfKENhVF2VfHc0U6PDX99LphNOK8Gh_9CCTy5qaNys"
