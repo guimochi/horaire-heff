@@ -27,12 +27,12 @@ Cours annulé, local déplacé, horaire décalé : tu le sais avant d'arriver de
 
 ## Ce que ça fait
 
-- **Notifications** Un cours annulé, ajouté, déplacé, un changement de local, d'horaire ou d'enseignant : une notification arrive. Plusieurs changements d'un coup donnent une seule notification groupée.
-- **Jour** Le cours en cours avec le temps restant, les pauses et les cours annulés barrés.
-- **Semaine** Toute la semaine d'un coup d'œil, les cours modifiés sont signalés. Quatre semaines à l'avance.
-- **Changements** Le fil de tout ce qui a bougé, avec l'avant et l'après.
-- **Hors ligne** Le dernier horaire reste lisible sans réseau, en mode Avion ou dans un sous-sol.
-- **Sans compte** Pas d'inscription, pas d'e-mail. Tu choisis ta promotion et c'est tout.
+- **Notifications** — Un cours annulé, ajouté, déplacé, un changement de local, d'horaire ou d'enseignant : une notification arrive. Plusieurs changements d'un coup donnent une seule notification groupée.
+- **Jour** — Le cours en cours avec le temps restant, les pauses et les cours annulés barrés.
+- **Semaine** — Toute la semaine d'un coup d'œil, les cours modifiés sont signalés. Quatre semaines à l'avance.
+- **Changements** — Le fil de tout ce qui a bougé, avec l'avant et l'après.
+- **Hors ligne** — Le dernier horaire reste lisible sans réseau, en mode Avion ou dans un sous-sol.
+- **Sans compte** — Pas d'inscription, pas d'e-mail. Tu choisis ta promotion et c'est tout.
 
 ## L'installer
 
@@ -53,10 +53,10 @@ flowchart LR
     KV -->|"API Pages Functions"| APP
 ```
 
-- **Lecture.** Une tâche GitHub Actions ouvre la page invité d'Hyperplanning avec un vrai navigateur, toutes les 30 minutes de 6 h à 22 h, du lundi au samedi. Elle lit les quatre prochaines semaines de chaque promotion suivie.
-- **Comparaison.** Elle compare avec la lecture précédente cours par cours, et en tire la liste des changements.
-- **Garde-fous.** Une lecture ratée ne se fait pas passer pour « tous les cours annulés ». Une semaine qui se vide d'un coup, ou une liste de promotions qui rétrécit, est mise en attente et vérifiée au passage suivant.
-- **Envoi.** Les changements sont enregistrés dans Cloudflare KV et envoyés en Web Push aux iPhone abonnés à cette promotion.
+- **Lecture.** — Une tâche GitHub Actions ouvre la page invité d'Hyperplanning avec un vrai navigateur, toutes les 30 minutes de 6 h à 22 h, du lundi au samedi. Elle lit les quatre prochaines semaines de chaque promotion suivie.
+- **Comparaison.** — Elle compare avec la lecture précédente cours par cours, et en tire la liste des changements.
+- **Garde-fous.** — Une lecture ratée ne se fait pas passer pour « tous les cours annulés ». Une semaine qui se vide d'un coup, ou une liste de promotions qui rétrécit, est mise en attente et vérifiée au passage suivant.
+- **Envoi.** — Les changements sont enregistrés dans Cloudflare KV et envoyés en Web Push aux iPhone abonnés à cette promotion.
 
 ## Stack
 
