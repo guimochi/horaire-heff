@@ -1,0 +1,15 @@
+# Weekly updates, never a release younger than 7 days (time for a compromised publish to be caught and pulled).
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7

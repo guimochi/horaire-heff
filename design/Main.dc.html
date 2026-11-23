@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Horaire – Jour</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#2447D6;text-decoration:none}a:hover{color:#1A36A8}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F5F4F0; color: #15171C; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; overflow: hidden">
+
+  <header style="padding: 58px 20px 0 20px; display: flex; flex-direction: column; gap: 14px">
+    <div style="display: flex; justify-content: space-between; align-items: center">
+      <span style="font-size: 13px; font-weight: 600; letter-spacing: 0.02em; color: #2447D6; background: #E8EDFF; padding: 6px 10px; border-radius: 999px">BA3 · S3 · EPS</span>
+      <button aria-label="Réglages" style="width: 44px; height: 44px; border: none; background: #FFFFFF; border-radius: 14px; display: flex; align-items: center; justify-content: center; color: #15171C; box-shadow: 0 1px 2px rgba(21,23,28,0.06)">
+        <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h10M18 7h2M4 17h4M12 17h8"></path><circle cx="16" cy="7" r="2"></circle><circle cx="10" cy="17" r="2"></circle></svg>
+      </button>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 2px">
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', Inter, sans-serif; font-size: 34px; line-height: 1.05; font-weight: 700; letter-spacing: -0.01em">Aujourd'hui</h1>
+      <p style="margin: 0; font-size: 16px; color: #5C6070">Lundi 23 novembre</p>
+    </div>
+  </header>
+
+  <nav aria-label="Jours de la semaine" style="display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; padding: 18px 16px 0 16px">
+    <button style="height: 64px; border: none; border-radius: 16px; background: #15171C; color: #FFFFFF; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: Inter, sans-serif">
+      <span style="font-size: 12px; font-weight: 500; opacity: 0.75">lun.</span><span style="font-size: 18px; font-weight: 600">23</span>
+    </button>
+    <button style="height: 64px; border: none; border-radius: 16px; background: #FFFFFF; color: #15171C; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: Inter, sans-serif">
+      <span style="font-size: 12px; font-weight: 500; color: #5C6070">mar.</span><span style="font-size: 18px; font-weight: 600">24</span>
+    </button>
+    <button style="height: 64px; border: none; border-radius: 16px; background: #FFFFFF; color: #15171C; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: Inter, sans-serif">
+      <span style="font-size: 12px; font-weight: 500; color: #5C6070">mer.</span><span style="font-size: 18px; font-weight: 600">25</span>
+    </button>
+    <button aria-label="Jeudi 26, contient un changement" style="height: 64px; border: none; border-radius: 16px; background: #FFFFFF; color: #15171C; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: Inter, sans-serif; position: relative">
+      <span style="font-size: 12px; font-weight: 500; color: #5C6070">jeu.</span><span style="font-size: 18px; font-weight: 600">26</span>
+      <span aria-hidden="true" style="position: absolute; top: 8px; right: 9px; width: 7px; height: 7px; border-radius: 50%; background: #B4500B"></span>
+    </button>
+    <button style="height: 64px; border: none; border-radius: 16px; background: transparent; color: #6B6F7B; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: Inter, sans-serif">
+      <span style="font-size: 12px; font-weight: 500">ven.</span><span style="font-size: 18px; font-weight: 600">27</span>
+    </button>
+    <button style="height: 64px; border: none; border-radius: 16px; background: transparent; color: #6B6F7B; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-family: Inter, sans-serif">
+      <span style="font-size: 12px; font-weight: 500">sam.</span><span style="font-size: 18px; font-weight: 600">28</span>
+    </button>
+  </nav>
+
+  <main style="flex: 1; display: flex; flex-direction: column; gap: 12px; padding: 18px 16px 16px 16px; overflow: hidden">
+
+    <a href="Changes.dc.html" style="display: flex; align-items: center; gap: 12px; padding: 12px 14px; background: #FDECEA; border-radius: 16px; color: #8F1D14">
+      <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><circle cx="12" cy="12" r="9"></circle><path d="M9 9l6 6M15 9l-6 6"></path></svg>
+      <span style="flex: 1; font-size: 14px; line-height: 1.35"><strong style="font-weight: 600">Act. gymniques 5 est annulé</strong> cet après-midi</span>
+      <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6l6 6-6 6"></path></svg>
+    </a>
+
+    <article style="background: #FFFFFF; border-radius: 22px; padding: 16px 16px 18px 16px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 1px 2px rgba(21,23,28,0.05); outline: 2px solid #2447D6; outline-offset: -2px">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <span style="font-size: 13px; font-weight: 600; color: #FFFFFF; background: #2447D6; padding: 4px 10px; border-radius: 999px">En cours</span>
+        <span style="font-size: 14px; font-weight: 600; font-variant-numeric: tabular-nums">08:00 – 11:00</span>
+      </div>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', Inter, sans-serif; font-size: 22px; line-height: 1.15; font-weight: 600">Diff des apprentissages</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 14px; color: #5C6070">
+        <span style="display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg><span style="color: #15171C; font-weight: 600">3.1.01</span></span>
+        <span style="display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1.2-3.5 4-5 7-5s5.8 1.5 7 5"></path></svg>Leroy Anne</span>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 6px">
+        <div role="progressbar" aria-label="Progression du cours" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100" style="height: 6px; background: #E8EDFF; border-radius: 999px; overflow: hidden"><div style="width: 55%; height: 6px; background: #2447D6; border-radius: 999px"></div></div>
+        <span style="font-size: 13px; color: #5C6070">Fin dans 1 h 20</span>
+      </div>
+    </article>
+
+    <div style="display: flex; align-items: center; gap: 10px; padding: 2px 6px; color: #5C6070; font-size: 13px">
+      <span style="flex: 1; height: 1px; background: #DEDCD5"></span>
+      <span>Pause · 11:00 – 13:00</span>
+      <span style="flex: 1; height: 1px; background: #DEDCD5"></span>
+    </div>
+
+    <article style="background: #FFFFFF; border-radius: 22px; padding: 16px 16px 18px 16px; display: flex; flex-direction: column; gap: 12px; opacity: 1; box-shadow: 0 1px 2px rgba(21,23,28,0.05)">
+      <div style="display: flex; justify-content: space-between; align-items: center">
+        <span style="font-size: 13px; font-weight: 600; color: #8F1D14; background: #FDECEA; padding: 4px 10px; border-radius: 999px">Annulé</span>
+        <span style="font-size: 14px; font-weight: 600; color: #5C6070; text-decoration: line-through; font-variant-numeric: tabular-nums">13:00 – 16:00</span>
+      </div>
+      <h2 style="margin: 0; font-family: 'Bricolage Grotesque', Inter, sans-serif; font-size: 22px; line-height: 1.15; font-weight: 600; color: #5C6070; text-decoration: line-through">Act. gymniques 5</h2>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 14px; color: #5C6070">
+        <span style="display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 21s7-6.2 7-11.5A7 7 0 0 0 5 9.5C5 14.8 12 21 12 21Z"></path><circle cx="12" cy="9.5" r="2.5"></circle></svg>Gymnase Buls</span>
+        <span style="display: flex; align-items: center; gap: 6px"><svg aria-hidden="true" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="8" r="3.5"></circle><path d="M5 20c1.2-3.5 4-5 7-5s5.8 1.5 7 5"></path></svg>Lambert Paul</span>
+      </div>
+    </article>
+
+    <p style="margin: auto 0 0 0; display: flex; align-items: center; justify-content: center; gap: 6px; font-size: 12px; color: #5C6070">
+      <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 11a8 8 0 0 0-14.6-4.5M4 4v4h4M4 13a8 8 0 0 0 14.6 4.5M20 20v-4h-4"></path></svg>
+      Mis à jour il y a 4 min
+    </p>
+  </main>
+
+  <nav aria-label="Navigation principale" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); padding: 8px 12px 30px 12px; background: #FFFFFF; border-top: 1px solid #E4E2DC">
+    <a href="Main.dc.html" aria-current="page" style="height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: #2447D6; font-size: 12px; font-weight: 600">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3" y="4.5" width="18" height="16" rx="3"></rect><path d="M3 9.5h18M8 2.5v4M16 2.5v4"></path></svg>Jour</a>
+    <a href="Week.dc.html" style="height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: #5C6070; font-size: 12px; font-weight: 500">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h10"></path></svg>Semaine</a>
+    <a href="Changes.dc.html" style="height: 52px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 3px; color: #5C6070; font-size: 12px; font-weight: 500; position: relative">
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><path d="M6 9a6 6 0 1 1 12 0c0 5 2 6.5 2 6.5H4S6 14 6 9Z"></path><path d="M10 19.5a2 2 0 0 0 4 0"></path></svg>Changements
+      <span aria-label="3 nouveaux" style="position: absolute; top: 2px; left: 54%; min-width: 18px; height: 18px; padding: 0 5px; box-sizing: border-box; border-radius: 999px; background: #B4500B; color: #FFFFFF; font-size: 11px; font-weight: 600; display: flex; align-items: center; justify-content: center">3</span>
+    </a>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

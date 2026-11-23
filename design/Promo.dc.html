@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Choisir sa promotion</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#2447D6;text-decoration:none}a:hover{color:#1A36A8}
+input::placeholder{color:#6B6F7B}
+input:focus{outline:none}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F5F4F0; color: #15171C; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; padding: 64px 20px 34px 20px; gap: 18px; overflow: hidden">
+
+  <div style="display: flex; flex-direction: column; gap: 6px">
+    <span style="font-size: 13px; font-weight: 600; color: #5C6070">Étape 2 sur 3</span>
+    <h1 style="margin: 0; font-family: 'Bricolage Grotesque', Inter, sans-serif; font-size: 30px; line-height: 1.1; font-weight: 700; letter-spacing: -0.01em">Quelle est ta promotion ?</h1>
+    <p style="margin: 0; font-size: 15px; line-height: 1.4; color: #5C6070">Tu ne verras que celle-ci. Tu pourras la changer dans les réglages.</p>
+  </div>
+
+  <label style="display: flex; align-items: center; gap: 10px; background: #FFFFFF; border-radius: 16px; padding: 0 14px; height: 54px; border: 2px solid #2447D6">
+    <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#5C6070" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+    <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Rechercher une promotion</span>
+    <input type="search" value="{{ q }}" onChange="{{ onQuery }}" placeholder="Ex. BA3 EPS, MATH, 3 SC…" style="flex: 1; border: none; background: transparent; font-family: Inter, sans-serif; font-size: 17px; color: #15171C; height: 50px">
+  </label>
+
+  <div style="flex: 1; display: flex; flex-direction: column; gap: 6px; overflow: hidden">
+    <span style="margin: 0 4px; font-size: 13px; color: #5C6070">{{ countLabel }}</span>
+    <ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px">
+      <sc-for list="{{ results }}" as="item" hint-placeholder-count="4">
+        <li>
+          <button onClick="{{ item.pick }}" style="{{ item.rowStyle }}">
+            <span style="flex: 1; text-align: left">{{ item.label }}</span>
+            <sc-if value="{{ item.selected }}" hint-placeholder-val="{{ false }}">
+              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+            </sc-if>
+          </button>
+        </li>
+      </sc-for>
+    </ul>
+    <sc-if value="{{ empty }}" hint-placeholder-val="{{ false }}">
+      <p style="margin: 16px 4px 0 4px; font-size: 15px; color: #5C6070">Aucune promotion ne correspond. Essaie juste « BA3 » ou « EPS ».</p>
+    </sc-if>
+  </div>
+
+  <a href="Notifs.dc.html" style="height: 56px; border-radius: 18px; background: #2447D6; color: #FFFFFF; display: flex; align-items: center; justify-content: center; font-size: 17px; font-weight: 600">{{ cta }}</a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { q: 'eps', picked: 'BA3 - S3 - EPS' };
+  }
+  renderVals() {
+    const all = ['3 EDP', '3 MATH', '3 SC', 'BA1 - S1 - A', 'BA1 - S1 - B', 'BA1 - S3 - EPS - A', 'BA1 - S3 - EPS - B', 'BA1 - S3 - MATH', 'BA2 - S1', 'BA2 - S3 - EPS', 'BA2 - S3 - LG', 'BA2 - S3 - MATH', 'BA3 - S3 - EPS', 'BA3 - S3 - MATH'];
+    const norm = (s) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+    const words = norm(this.state.q).split(' ').filter(Boolean);
+    const hits = all.filter((p) => words.every((w) => norm(p).includes(w)));
+    const base = 'width: 100%; min-height: 52px; border: none; border-radius: 16px; padding: 0 16px; display: flex; align-items: center; gap: 10px; font-family: Inter, sans-serif; font-size: 16px; font-weight: 600; cursor: pointer; ';
+    return {
+      q: this.state.q,
+      onQuery: (e) => this.setState({ q: e.target.value }),
+      results: hits.slice(0, 7).map((label) => {
+        const selected = label === this.state.picked;
+        return {
+          label,
+          selected,
+          rowStyle: base + (selected ? 'background: #2447D6; color: #FFFFFF;' : 'background: #FFFFFF; color: #15171C;'),
+          pick: () => this.setState({ picked: label }),
+        };
+      }),
+      empty: hits.length === 0,
+      countLabel: hits.length === 1 ? '1 promotion' : hits.length + ' promotions',
+      cta: this.state.picked ? 'Continuer avec ' + this.state.picked : 'Continuer',
+    };
+  }
+}
+</script>
+</body>
+</html>

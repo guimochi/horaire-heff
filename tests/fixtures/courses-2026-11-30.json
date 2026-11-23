@@ -1,0 +1,148 @@
+{
+  "promo": "BA3 - S3 - EPS",
+  "weekLabel": "Semaine 13, du 30/11/2026 au 05/12/2026",
+  "weekStart": "2026-11-30",
+  "groups": [
+    "3 EDP",
+    "BA2 - S3 - EPS",
+    "BA3 - S1",
+    "BA3 - S2",
+    "BA3 - S2 - HD",
+    "BA3 - S3 - FEPC",
+    "BA3 - S3 - FFLE",
+    "BA3 - S3 - FFLE- HD",
+    "BA3 - S3 - LG",
+    "BA3 - S3 - LG - HD",
+    "BA3 - S3 - MATH",
+    "BA3 - S3 - MATH - HD",
+    "BA3 - S3 - SC",
+    "BA3 - S3 - SC - HD",
+    "BA3 - S3 - SH",
+    "MA1 - S5 - Sciences éco"
+  ],
+  "courses": [
+    {
+      "aria": "Cours du 30 novembre de 8 heures 00 à 11 heures 00",
+      "lines": [
+        "Diff des apprentissages",
+        "Leroy Anne",
+        "3 EDP",
+        "3.2.01"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 30 novembre de 13 heures 00 à 15 heures 00",
+      "lines": [
+        "Act. gymniques 5",
+        "Lambert Paul",
+        "3 EDP",
+        "Gymnase Buls"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 30 novembre de 15 heures 00 à 16 heures 00",
+      "lines": [
+        "Act. gymnique 3 + 5",
+        "Lambert Paul",
+        "3 EDP",
+        "BA2 - S3 - EPS",
+        "Gymnase Buls"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 1 décembre de 9 heures 00 à 12 heures 00",
+      "lines": [
+        "Sports et jeux",
+        "Girard Julie",
+        "3 EDP",
+        "Bolingo"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 1 décembre de 14 heures 00 à 18 heures 00",
+      "lines": [
+        "Education à la santé ULB",
+        "ULB Mercier Claire",
+        "ULB Erasme 1",
+        "Mémo = psychomot/ activité phys et santé mentale ULB Erasme E2 2 séminaire 1"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 2 décembre de 10 heures 30 à 12 heures 30",
+      "lines": [
+        "Athlétisme 4",
+        "Van Acker Marc",
+        "ADEPS Auderghem"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 3 décembre de 8 heures 00 à 10 heures 00",
+      "lines": [
+        "Sports individuels",
+        "Moreau Hugo",
+        "3 EDP",
+        "Gymnase Buls"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 3 décembre de 10 heures 00 à 12 heures 00",
+      "lines": [
+        "Diff des apprentissages",
+        "Leroy Anne",
+        "3 EDP",
+        "3.1.01"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 3 décembre de 13 heures 30 à 16 heures 30",
+      "lines": [
+        "Sports et jeux",
+        "Moreau Hugo",
+        "3 EDP",
+        "Mémo // Sport 6 TC"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 4 décembre de 8 heures 00 à 12 heures 00",
+      "lines": [
+        "socio-hist syst éducatif ULB",
+        "ULB Fontaine Emma",
+        "BA3 - S1",
+        "BA3 - S2",
+        "BA3 - S2 - HD",
+        "BA3 - S3 - FEPC",
+        "BA3 - S3 - FFLE",
+        "BA3 - S3 - FFLE- HD",
+        "BA3 - S3 - LG",
+        "BA3 - S3 - LG - HD",
+        "BA3 - S3 - MATH",
+        "BA3 - S3 - MATH - HD",
+        "BA3 - S3 - SC",
+        "BA3 - S3 - SC - HD",
+        "BA3 - S3 - SH",
+        "MA1 - S5 - Sciences éco",
+        "Mémo Solbosh H1309 auditoire Van Rijn"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 4 décembre de 13 heures 00 à 16 heures 00",
+      "lines": [
+        "Biomécanique sportive",
+        "Van Dijk Sarah",
+        "3.2.01",
+        "Mémo // Bioméca 3 TC de 2ème"
+      ],
+      "cancelledMarker": false
+    }
+  ]
+}

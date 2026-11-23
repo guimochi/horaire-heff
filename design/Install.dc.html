@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Installer l'app</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&amp;family=Inter:wght@400;500;600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#2447D6;text-decoration:none}a:hover{color:#1A36A8}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F5F4F0; color: #15171C; font-family: Inter, system-ui, sans-serif; display: flex; flex-direction: column; padding: 72px 24px 0 24px; overflow: hidden">
+
+  <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 18px">
+    <div aria-hidden="true" style="width: 72px; height: 72px; border-radius: 18px; background: #2447D6; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #FFFFFF; box-shadow: 0 8px 20px rgba(36,71,214,0.25)">
+      <span style="font-size: 11px; font-weight: 600; letter-spacing: 0.08em; opacity: 0.85">LUN.</span>
+      <span style="font-family: 'Bricolage Grotesque', Inter, sans-serif; font-size: 30px; font-weight: 700; line-height: 1">23</span>
+    </div>
+    <div style="display: flex; flex-direction: column; gap: 8px">
+      <h1 style="margin: 0; font-family: 'Bricolage Grotesque', Inter, sans-serif; font-size: 32px; line-height: 1.08; font-weight: 700; letter-spacing: -0.01em">Ton horaire HEFF, toujours à jour</h1>
+      <p style="margin: 0; font-size: 16px; line-height: 1.45; color: #5C6070">Ajoute l'app à ton écran d'accueil pour être prévenue dès qu'un cours est annulé ou déplacé.</p>
+    </div>
+  </div>
+
+  <ol style="list-style: none; margin: 28px 0 0 0; padding: 0; display: flex; flex-direction: column; gap: 10px">
+    <li style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border-radius: 18px; padding: 14px 16px">
+      <span style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #E8EDFF; color: #2447D6; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center">1</span>
+      <span style="flex: 1; font-size: 15px; line-height: 1.35">Touche <strong style="font-weight: 600">Partager</strong> en bas de Safari</span>
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2447D6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M8 7l4-4 4 4"></path><path d="M7 11H6a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"></path></svg>
+    </li>
+    <li style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border-radius: 18px; padding: 14px 16px">
+      <span style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #E8EDFF; color: #2447D6; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center">2</span>
+      <span style="flex: 1; font-size: 15px; line-height: 1.35">Choisis <strong style="font-weight: 600">Sur l'écran d'accueil</strong></span>
+      <svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#2447D6" stroke-width="1.8" stroke-linecap="round"><rect x="4" y="4" width="16" height="16" rx="4"></rect><path d="M12 8v8M8 12h8"></path></svg>
+    </li>
+    <li style="display: flex; align-items: center; gap: 14px; background: #FFFFFF; border-radius: 18px; padding: 14px 16px">
+      <span style="width: 28px; height: 28px; flex-shrink: 0; border-radius: 50%; background: #E8EDFF; color: #2447D6; font-size: 14px; font-weight: 600; display: flex; align-items: center; justify-content: center">3</span>
+      <span style="flex: 1; font-size: 15px; line-height: 1.35">Ouvre l'app depuis sa nouvelle icône</span>
+      <span aria-hidden="true" style="width: 24px; height: 24px; border-radius: 6px; background: #2447D6; color: #FFFFFF; font-size: 10px; font-weight: 700; display: flex; align-items: center; justify-content: center">23</span>
+    </li>
+  </ol>
+
+  <a href="Promo.dc.html" style="margin-top: 18px; align-self: center; min-height: 44px; display: flex; align-items: center; font-size: 14px; font-weight: 500">C'est fait, continuer</a>
+
+  <div aria-hidden="true" style="margin-top: auto; display: flex; flex-direction: column; align-items: center; gap: 6px; padding-bottom: 14px; color: #2447D6">
+    <span style="font-size: 13px; font-weight: 600">Le bouton Partager est ici</span>
+    <svg width="28" height="40" viewBox="0 0 28 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2v34M5 27l9 9 9-9"></path></svg>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

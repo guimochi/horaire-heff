@@ -1,0 +1,170 @@
+{
+  "promo": "BA3 - S3 - EPS",
+  "weekLabel": "Semaine 5, du 05/10/2026 au 10/10/2026",
+  "weekStart": "2026-10-05",
+  "groups": [
+    "3 EDP",
+    "BA2 - S3 - EPS",
+    "BA3 - S1",
+    "BA3 - S2",
+    "BA3 - S2 - HD",
+    "BA3 - S3 - FEPC",
+    "BA3 - S3 - FFLE",
+    "BA3 - S3 - FFLE- HD",
+    "BA3 - S3 - LG",
+    "BA3 - S3 - LG - HD",
+    "BA3 - S3 - MATH",
+    "BA3 - S3 - MATH - HD",
+    "BA3 - S3 - SC",
+    "BA3 - S3 - SC - HD",
+    "BA3 - S3 - SH",
+    "MA1 - S5 - Sciences éco"
+  ],
+  "courses": [
+    {
+      "aria": "Cours du 5 octobre de 8 heures 00 à 10 heures 00",
+      "lines": [
+        "Diff des apprentissages",
+        "Leroy Anne",
+        "3 EDP",
+        "3.1.01"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 5 octobre de 13 heures 00 à 15 heures 00",
+      "lines": [
+        "Act. gymniques 5",
+        "Lambert Paul",
+        "3 EDP",
+        "Gymnase Buls"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 5 octobre de 15 heures 00 à 16 heures 00",
+      "lines": [
+        "Act. gymnique 3 + 5",
+        "Lambert Paul",
+        "3 EDP",
+        "BA2 - S3 - EPS",
+        "Gymnase Buls"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 6 octobre de 9 heures 00 à 12 heures 00",
+      "lines": [
+        "Sports et jeux",
+        "Girard Julie",
+        "3 EDP",
+        "Bolingo"
+      ],
+      "cancelledMarker": true
+    },
+    {
+      "aria": "Cours du 6 octobre de 14 heures 00 à 18 heures 00",
+      "lines": [
+        "Education à la santé ULB",
+        "ULB Mercier Claire",
+        "ULB Erasme 1",
+        "Mémo = psychomot/ activité phys et santé mentale ULB Erasme E2 2 séminaire 1"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 7 octobre de 10 heures 30 à 12 heures 30",
+      "lines": [
+        "Athlétisme 4",
+        "Van Acker Marc",
+        "ADEPS Auderghem"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 7 octobre de 14 heures 00 à 17 heures 00",
+      "lines": [
+        "Diff des apprentissages",
+        "Leroy Anne",
+        "1.0.09"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 8 octobre de 8 heures 00 à 10 heures 00",
+      "lines": [
+        "Sports individuels",
+        "Moreau Hugo",
+        "3 EDP",
+        "Gymnase Buls"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 8 octobre de 10 heures 00 à 12 heures 00",
+      "lines": [
+        "AFP 3",
+        "Van Dijk Sarah",
+        "3 EDP",
+        "3.2.01"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 8 octobre de 13 heures 30 à 16 heures 30",
+      "lines": [
+        "Sports et jeux",
+        "Moreau Hugo",
+        "3 EDP",
+        "Mémo // Sport 6 TC"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 9 octobre de 8 heures 00 à 12 heures 00",
+      "lines": [
+        "socio-hist syst éducatif ULB",
+        "ULB Fontaine Emma",
+        "BA3 - S1",
+        "BA3 - S2",
+        "BA3 - S2 - HD",
+        "BA3 - S3 - FEPC",
+        "BA3 - S3 - FFLE",
+        "BA3 - S3 - FFLE- HD",
+        "BA3 - S3 - LG",
+        "BA3 - S3 - LG - HD",
+        "BA3 - S3 - MATH",
+        "BA3 - S3 - MATH - HD",
+        "BA3 - S3 - SC",
+        "BA3 - S3 - SC - HD",
+        "BA3 - S3 - SH",
+        "MA1 - S5 - Sciences éco",
+        "Mémo Solbosh H1309 auditoire Van Rijn"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 9 octobre de 14 heures 00 à 18 heures 00",
+      "lines": [
+        "méthodes de recherche ULB",
+        "ULB Petit Lucas",
+        "BA3 - S1",
+        "BA3 - S2",
+        "BA3 - S2 - HD",
+        "BA3 - S3 - FEPC",
+        "BA3 - S3 - FFLE",
+        "BA3 - S3 - FFLE- HD",
+        "BA3 - S3 - LG",
+        "BA3 - S3 - LG - HD",
+        "BA3 - S3 - MATH",
+        "BA3 - S3 - MATH - HD",
+        "BA3 - S3 - SC",
+        "BA3 - S3 - SC - HD",
+        "BA3 - S3 - SH",
+        "ULB Solbosch 1",
+        "Mémo Solbocsh AZ1.101"
+      ],
+      "cancelledMarker": false
+    }
+  ]
+}

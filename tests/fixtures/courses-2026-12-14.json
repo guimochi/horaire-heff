@@ -1,0 +1,108 @@
+{
+  "promo": "BA3 - S3 - EPS",
+  "weekLabel": "Semaine 15, du 14/12/2026 au 19/12/2026",
+  "weekStart": "2026-12-14",
+  "groups": [
+    "3 EDP",
+    "BA3 - S3 - FEPC",
+    "BA3 - S3 - FFLE",
+    "BA3 - S3 - LG",
+    "BA3 - S3 - MATH",
+    "BA3 - S3 - SC",
+    "BA3 - S3 - SH"
+  ],
+  "courses": [
+    {
+      "aria": "Cours du 14 décembre de 8 heures 00 à 11 heures 00",
+      "lines": [
+        "Diff des apprentissages",
+        "Leroy Anne",
+        "3.2.01"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 14 décembre de 13 heures 00 à 14 heures 30",
+      "lines": [
+        "Act. gymniques 5",
+        "Lambert Paul",
+        "Gymnase Buls",
+        "Mémo EXAMEN"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 15 décembre de 9 heures 00 à 12 heures 00",
+      "lines": [
+        "Sports et jeux",
+        "Girard Julie",
+        "3 EDP",
+        "Bolingo"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 15 décembre de 13 heures 00 à 15 heures 00",
+      "lines": [
+        "Athlétisme 4",
+        "Van Acker Marc",
+        "Gymnase Buls"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 16 décembre de 10 heures 30 à 12 heures 30",
+      "lines": [
+        "Athlétisme 4",
+        "Van Acker Marc",
+        "ADEPS Auderghem"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 17 décembre de 9 heures 00 à 12 heures 00",
+      "lines": [
+        "Diff des apprentissages",
+        "Leroy Anne",
+        "3 EDP",
+        "3.1.01"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 17 décembre de 13 heures 30 à 16 heures 30",
+      "lines": [
+        "Sports et jeux",
+        "Moreau Hugo",
+        "3 EDP",
+        "Mémo // Sport 6 TC"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 18 décembre de 10 heures 00 à 12 heures 00",
+      "lines": [
+        "I.A en éducation",
+        "Simon Louis",
+        "BA3 - S3 - FEPC",
+        "BA3 - S3 - FFLE",
+        "BA3 - S3 - LG",
+        "BA3 - S3 - MATH",
+        "BA3 - S3 - SC",
+        "BA3 - S3 - SH",
+        "1.1.05 (informatique)"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 18 décembre de 13 heures 00 à 16 heures 00",
+      "lines": [
+        "Biomécanique sportive",
+        "Van Dijk Sarah",
+        "3.2.01",
+        "Mémo // Bioméca 3 TC de 2ème"
+      ],
+      "cancelledMarker": false
+    }
+  ]
+}

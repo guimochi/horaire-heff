@@ -1,0 +1,23 @@
+{
+  "v": 3,
+  "createdOnFiles": {"v": 1, "at": "2026-11-23T08:56:00Z"},
+  "title": "Horaire HEFF",
+  "launch": {"view": "canvas"},
+  "pages": [],
+  "boards": {
+    "Main.dc.html": {"x": 0, "y": 1264, "w": 390, "h": 844, "title": "Jour", "is_interactive": true, "radius": 44},
+    "Week.dc.html": {"x": 470, "y": 1264, "w": 390, "h": 844, "title": "Semaine", "is_interactive": true, "radius": 44},
+    "Changes.dc.html": {"x": 940, "y": 1264, "w": 390, "h": 844, "title": "Changements", "is_interactive": true, "radius": 44},
+    "Install.dc.html": {"x": 0, "y": 0, "w": 390, "h": 844, "title": "1 · Installer sur l'iPhone", "is_interactive": true, "radius": 44},
+    "Promo.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "2 · Choisir sa promotion", "is_interactive": true, "radius": 44},
+    "Notifs.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "3 · Activer les notifications", "is_interactive": true, "radius": 44}
+  },
+  "order": ["Main.dc.html", "Week.dc.html", "Changes.dc.html", "Install.dc.html", "Promo.dc.html", "Notifs.dc.html"],
+  "notes": {
+    "onboarding": {"x": 0, "y": -300, "text": "Premier lancement", "kind": "title1", "maxW": 1330},
+    "daily": {"x": 0, "y": 964, "text": "Au quotidien", "kind": "title1", "maxW": 1330},
+    "why": {"x": 1410, "y": 0, "w": 320, "text": "L'installation sur l'écran d'accueil est obligatoire sur iPhone pour recevoir les notifications (iOS 16.4+). On la guide d'abord, puis on demande la promotion une seule fois.", "fill": "blue"},
+    "data": {"x": 1410, "y": 1264, "w": 320, "text": "Exemple : cours réels de BA3 · S3 · EPS (semaine du 23 nov.). L'annulation et les modifications sont fictives, pour montrer les états.", "fill": "orange"}
+  },
+  "designSystems": []
+}

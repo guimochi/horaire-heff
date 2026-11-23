@@ -1,0 +1,212 @@
+{
+  "promo": "BA3 - S3 - EPS",
+  "weekLabel": "Semaine 14, du 07/12/2026 au 12/12/2026",
+  "weekStart": "2026-12-07",
+  "groups": [
+    "3 EDP",
+    "3 FEPC",
+    "3 FFLE",
+    "3 LG",
+    "3 MATH",
+    "3 MATHHA",
+    "3 SC",
+    "3 SH",
+    "BA1 - S3 - EPS - A",
+    "BA1 - S3 - EPS - B",
+    "BA1 - S3 - FEPC",
+    "BA1 - S3 - FFLE",
+    "BA1 - S3 - FFLE - HD",
+    "BA1 - S3 - LG",
+    "BA1 - S3 - LG- HD",
+    "BA1 - S3 - MATH",
+    "BA1 - S3 - MATH - HD",
+    "BA1 - S3 - SC",
+    "BA1 - S3 - SC - HD",
+    "BA1 - S3 - SH",
+    "BA2 - S3 - EPS",
+    "BA2 - S3 - FEPC",
+    "BA2 - S3 - FFLE",
+    "BA2 - S3 - LG",
+    "BA2 - S3 - MATH",
+    "BA2 - S3 - SC",
+    "BA2 - S3 - SH",
+    "BA3 - S3 - FEPC",
+    "BA3 - S3 - FFLE",
+    "BA3 - S3 - LG",
+    "BA3 - S3 - SC",
+    "MA1 - S3 - EPS",
+    "MA1 - S3 - FEPC",
+    "MA1 - S3 - FFLE",
+    "MA1 - S3 - FLE - HD",
+    "MA1 - S3 - LG",
+    "MA1 - S3 - LG - HD",
+    "MA1 - S3 - MATH",
+    "MA1 - S3 - MATH - HD",
+    "MA1 - S3 - SC",
+    "MA1 - S3 - SC - HD",
+    "MA1 - S3 - SH",
+    "BA3 - S1",
+    "BA3 - S2",
+    "BA3 - S2 - HD",
+    "BA3 - S3 - FFLE- HD",
+    "BA3 - S3 - LG - HD",
+    "BA3 - S3 - MATH",
+    "BA3 - S3 - MATH - HD",
+    "BA3 - S3 - SC - HD",
+    "BA3 - S3 - SH",
+    "MA1 - S5 - Sciences éco"
+  ],
+  "courses": [
+    {
+      "aria": "Cours du 7 décembre de 8 heures 00 à 12 heures 00",
+      "lines": [
+        "AFP1 /AFP2 /AFP3",
+        "Lemaire Alain",
+        "Renard Hélène",
+        "3 EDP",
+        "3 FEPC",
+        "3 FFLE",
+        "3 LG",
+        "3 MATH",
+        "3 MATHHA",
+        "3 SC",
+        "3 SH",
+        "BA1 - S3 - EPS - A",
+        "BA1 - S3 - EPS - B",
+        "BA1 - S3 - FEPC",
+        "BA1 - S3 - FFLE",
+        "BA1 - S3 - FFLE - HD",
+        "BA1 - S3 - LG",
+        "BA1 - S3 - LG- HD",
+        "BA1 - S3 - MATH",
+        "BA1 - S3 - MATH - HD",
+        "BA1 - S3 - SC",
+        "BA1 - S3 - SC - HD",
+        "BA1 - S3 - SH",
+        "BA2 - S3 - EPS",
+        "BA2 - S3 - FEPC",
+        "BA2 - S3 - FFLE",
+        "BA2 - S3 - LG",
+        "BA2 - S3 - MATH",
+        "BA2 - S3 - SC",
+        "BA2 - S3 - SH",
+        "BA3 - S3 - FEPC",
+        "BA3 - S3 - FFLE",
+        "BA3 - S3 - LG",
+        "BA3 - S3 - SC",
+        "MA1 - S3 - EPS",
+        "MA1 - S3 - FEPC",
+        "MA1 - S3 - FFLE",
+        "MA1 - S3 - FLE - HD",
+        "MA1 - S3 - LG",
+        "MA1 - S3 - LG - HD",
+        "MA1 - S3 - MATH",
+        "MA1 - S3 - MATH - HD",
+        "MA1 - S3 - SC",
+        "MA1 - S3 - SC - HD",
+        "MA1 - S3 - SH",
+        "1.2.07",
+        "1.2.10",
+        "1.2.11 - Local Levillez",
+        "1.2.12"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 7 décembre de 13 heures 00 à 15 heures 00",
+      "lines": [
+        "Act. gymniques 5",
+        "Lambert Paul",
+        "3 EDP",
+        "Gymnase Buls"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 7 décembre de 15 heures 00 à 16 heures 00",
+      "lines": [
+        "Act. gymnique 3 + 5",
+        "Lambert Paul",
+        "3 EDP",
+        "BA2 - S3 - EPS",
+        "Gymnase Buls"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 8 décembre de 9 heures 00 à 12 heures 00",
+      "lines": [
+        "Sports et jeux",
+        "Girard Julie",
+        "3 EDP",
+        "Bolingo"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 8 décembre de 14 heures 00 à 18 heures 00",
+      "lines": [
+        "Education à la santé ULB",
+        "ULB Mercier Claire",
+        "ULB Erasme 1",
+        "Mémo = psychomot/ activité phys et santé mentale ULB Erasme E2 2 séminaire 3"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 9 décembre de 8 heures 00 à 17 heures 00",
+      "lines": [
+        "AFP 3",
+        "Leroy Anne",
+        "3 EDP",
+        "Gymnase Buls",
+        "Mémo Ligue handisport"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 10 décembre de 8 heures 00 à 17 heures 00",
+      "lines": [
+        "AFP 3",
+        "Leroy Anne",
+        "3 EDP",
+        "Gymnase Buls",
+        "Mémo Ligue handisport"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 11 décembre de 8 heures 00 à 12 heures 00",
+      "lines": [
+        "socio-hist syst éducatif ULB",
+        "ULB Fontaine Emma",
+        "BA3 - S1",
+        "BA3 - S2",
+        "BA3 - S2 - HD",
+        "BA3 - S3 - FEPC",
+        "BA3 - S3 - FFLE",
+        "BA3 - S3 - FFLE- HD",
+        "BA3 - S3 - LG",
+        "BA3 - S3 - LG - HD",
+        "BA3 - S3 - MATH",
+        "BA3 - S3 - MATH - HD",
+        "BA3 - S3 - SC",
+        "BA3 - S3 - SC - HD",
+        "BA3 - S3 - SH",
+        "MA1 - S5 - Sciences éco",
+        "Mémo Solbosh H1309 auditoire Van Rijn"
+      ],
+      "cancelledMarker": false
+    },
+    {
+      "aria": "Cours du 11 décembre de 13 heures 00 à 16 heures 00",
+      "lines": [
+        "Biomécanique sportive",
+        "Van Dijk Sarah",
+        "3.2.01",
+        "Mémo // Bioméca 3 TC de 2ème"
+      ],
+      "cancelledMarker": false
+    }
+  ]
+}
