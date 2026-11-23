@@ -150,6 +150,11 @@ a { color: var(--accent); text-decoration: none; }
   justify-content: center; color: var(--ink); box-shadow: 0 1px 2px rgba(21, 23, 28, 0.06); cursor: pointer;
 }
 .icon-btn:disabled { opacity: 0.35; cursor: default; }
+.head-actions { display: flex; gap: 8px; }
+/* Invisible native input over the button: a tap opens the system date picker. 16px avoids iOS zoom on focus. */
+.date-pick { position: relative; }
+.date-pick input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; padding: 0; border: 0; opacity: 0; font-size: 16px; cursor: pointer; }
+.date-pick:focus-within { outline: 2px solid var(--accent); outline-offset: 2px; }
 .head-title { display: flex; flex-direction: column; gap: 2px; }
 .h-big { margin: 0; font-family: var(--font-title); font-size: 34px; line-height: 1.05; font-weight: 700; letter-spacing: -0.01em; }
 .sub { margin: 0; font-size: 16px; color: var(--muted); }
@@ -237,7 +242,7 @@ a { color: var(--accent); text-decoration: none; }
 .week-title h1 { margin: 0; font-family: var(--font-title); font-size: 24px; line-height: 1.1; font-weight: 700; }
 .week-title p { margin: 0; font-size: 14px; color: var(--muted); }
 .week-main { gap: 10px; padding-top: 14px; padding-bottom: 12px; }
-.week-day { display: flex; flex-direction: column; gap: 6px; }
+.week-day { display: flex; flex-direction: column; gap: 6px; scroll-margin-top: calc(env(safe-area-inset-top) + 12px); }
 .week-day h2 { margin: 0 4px; font-size: 13px; font-weight: 600; color: var(--muted); }
 .week-day h2.is-today { color: var(--accent); }
 .week-rows { background: var(--surface); border-radius: 18px; display: flex; flex-direction: column; }

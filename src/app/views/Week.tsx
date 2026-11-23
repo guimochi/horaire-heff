@@ -1,8 +1,10 @@
-import { useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
+import { mondayOf } from '../../shared/time';
 import type { Change } from '../../shared/types';
 import type { Schedule } from '../data';
 import { defaultWeek, emptyDaysText, hasWeekAhead, keepPick, tags, today, weekModel, weekRange, weekTitle } from '../model';
 import { promoLabel } from '../store';
+import { DatePick } from '../components/DatePick';
 import { Icon } from '../components/Icon';
 import { Calm, StaleBanner, Updated } from '../components/Status';
 
@@ -19,11 +21,24 @@ export function Week({ promo, schedule, changes, now, retry }: {
   const prev = s && i > 0 ? s.weeks[i - 1] : null;
   const next = s && i >= 0 && i < s.weeks.length - 1 ? s.weeks[i + 1] : null;
   const m = s && monday ? weekModel(s, changes ?? [], monday, now) : null;
+  // A picked date scrolls its day (or the next day with courses) to the top; `n` re-fires on the same date.
+  const [jump, setJump] = useState<{ date: string; n: number } | null>(null);
+  const main = useRef<HTMLElement>(null);
+  useEffect(() => {
+    if (!jump) return;
+    const days = [...(main.current?.querySelectorAll<HTMLElement>('.week-day') ?? [])];
+    days.find((el) => el.dataset.date! >= jump.date)?.scrollIntoView({ block: 'start' });
+  }, [jump]);
+  const t = today(now);
 
   return (
     <div class="view">
       <header class="view-head week-head">
-        <span class="promo-pill">{promoLabel(promo)}</span>
+        <div class="head-row">
+          <span class="promo-pill">{promoLabel(promo)}</span>
+          {s && monday && <DatePick weeks={s.weeks} value={mondayOf(t) === monday ? t : monday}
+            onPick={(d) => { setPicked({ value: mondayOf(d), on: t }); setJump({ date: d, n: (jump?.n ?? 0) + 1 }); }} />}
+        </div>
         {monday && (
           <div class="week-nav">
             <button type="button" class="icon-btn" aria-label="Semaine précédente" disabled={!prev} onClick={() => prev && setPicked({ value: prev, on: today(now) })}>
@@ -41,7 +56,7 @@ export function Week({ promo, schedule, changes, now, retry }: {
         {!monday && <h1 class="h-big">Semaine</h1>}
       </header>
 
-      <main class="view-main week-main">
+      <main class="view-main week-main" ref={main}>
         {schedule.state === 'loading' && <Calm kind="loading" />}
         {schedule.state === 'pending' && <Calm kind="pending" />}
         {(schedule.state === 'offline' || schedule.state === 'error') && <Calm kind={schedule.state} retry={retry} />}
@@ -56,7 +71,7 @@ export function Week({ promo, schedule, changes, now, retry }: {
           <>
             <StaleBanner s={schedule.snapshot} lastSuccess={schedule.lastSuccess} now={now} />
             {m.days.map((d) => (
-              <section key={d.date} class="week-day">
+              <section key={d.date} class="week-day" data-date={d.date}>
                 <h2 class={d.isToday ? 'is-today' : ''}>{d.label}</h2>
                 <div class="week-rows">
                   {d.items.map((it) => {

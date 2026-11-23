@@ -4,6 +4,7 @@ import type { Schedule } from '../data';
 import { bannerText, cap, dayBar, dayModel, dayTitle, hasWeekAhead, keepPick, longDate, shortDate, today } from '../model';
 import { promoLabel } from '../store';
 import { CourseCard } from '../components/CourseCard';
+import { DatePick } from '../components/DatePick';
 import { Icon } from '../components/Icon';
 import { Calm, StaleBanner, Updated } from '../components/Status';
 
@@ -23,7 +24,10 @@ export function Day({ promo, schedule, changes, now, retry }: {
       <header class="view-head">
         <div class="head-row">
           <span class="promo-pill">{promoLabel(promo)}</span>
-          <a class="icon-btn" href="#/reglages" aria-label="Réglages"><Icon name="settings" size={22} width={1.8} /></a>
+          <div class="head-actions">
+            {s && m && <DatePick weeks={s.weeks} value={date} onPick={(d) => setPicked({ value: d, on: today(now) })} />}
+            <a class="icon-btn" href="#/reglages" aria-label="Réglages"><Icon name="settings" size={22} width={1.8} /></a>
+          </div>
         </div>
         <div class="head-title">
           <h1 class="h-big">{dayTitle(date, now)}</h1>
