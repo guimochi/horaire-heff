@@ -27,14 +27,12 @@ Cours annulé, local déplacé, horaire décalé : tu le sais avant d'arriver de
 
 ## Ce que ça fait
 
-| | |
-| --- | --- |
-| **Notifications** | Un cours annulé, ajouté, déplacé, un changement de local, d'horaire ou d'enseignant : une notification arrive. Plusieurs changements d'un coup donnent une seule notification groupée. |
-| **Jour** | Le cours en cours avec le temps restant, les pauses et les cours annulés barrés. |
-| **Semaine** | Toute la semaine d'un coup d'œil, les cours modifiés sont signalés. Quatre semaines à l'avance. |
-| **Changements** | Le fil de tout ce qui a bougé, avec l'avant et l'après. |
-| **Hors ligne** | Le dernier horaire reste lisible sans réseau, en mode Avion ou dans un sous-sol. |
-| **Sans compte** | Pas d'inscription, pas d'e-mail. Tu choisis ta promotion et c'est tout. |
+- **Notifications** Un cours annulé, ajouté, déplacé, un changement de local, d'horaire ou d'enseignant : une notification arrive. Plusieurs changements d'un coup donnent une seule notification groupée.
+- **Jour** Le cours en cours avec le temps restant, les pauses et les cours annulés barrés.
+- **Semaine** Toute la semaine d'un coup d'œil, les cours modifiés sont signalés. Quatre semaines à l'avance.
+- **Changements** Le fil de tout ce qui a bougé, avec l'avant et l'après.
+- **Hors ligne** Le dernier horaire reste lisible sans réseau, en mode Avion ou dans un sous-sol.
+- **Sans compte** Pas d'inscription, pas d'e-mail. Tu choisis ta promotion et c'est tout.
 
 ## L'installer
 
