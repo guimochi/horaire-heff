@@ -36,7 +36,9 @@ describe('go to a date', () => {
   it('unpublished_or_cleared_date_changes_nothing', () => {
     render(<Day {...props} />);
     pick('2027-01-12');
+    expect((screen.getByLabelText('Aller à une date') as HTMLInputElement).value).toBe('2026-11-23'); // field resynced
     pick('');
+    expect((screen.getByLabelText('Aller à une date') as HTMLInputElement).value).toBe('2026-11-23');
     expect(screen.getByText('Lundi 23 novembre')).toBeTruthy();
   });
 
@@ -48,6 +50,15 @@ describe('go to a date', () => {
     expect(screen.getByText('7 – 12 décembre')).toBeTruthy();
     expect(scroll).toHaveBeenCalledTimes(1);
     expect((scroll.mock.contexts[0] as HTMLElement).dataset.date).toBe('2026-12-08');
+    expect((screen.getByLabelText('Aller à une date') as HTMLInputElement).value).toBe('2026-12-08'); // reopens on the picked day
+  });
+
+  it('week_view_no_later_day_with_courses_fills_the_page_with_the_last_day', () => {
+    const scroll = vi.fn();
+    Element.prototype.scrollIntoView = scroll;
+    render(<Week {...props} />);
+    pick('2026-12-11');
+    expect((scroll.mock.contexts[0] as HTMLElement).dataset.date).toBe('2026-12-10');
   });
 
   it('week_view_empty_day_scrolls_to_the_next_day_with_courses', () => {

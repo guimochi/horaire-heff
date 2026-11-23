@@ -22,12 +22,13 @@ export function Week({ promo, schedule, changes, now, retry }: {
   const next = s && i >= 0 && i < s.weeks.length - 1 ? s.weeks[i + 1] : null;
   const m = s && monday ? weekModel(s, changes ?? [], monday, now) : null;
   // A picked date scrolls its day (or the next day with courses) to the top; `n` re-fires on the same date.
+  // No later day with courses: the last one, so the page stays filled (the browser stops at the bottom).
   const [jump, setJump] = useState<{ date: string; n: number } | null>(null);
   const main = useRef<HTMLElement>(null);
   useEffect(() => {
     if (!jump) return;
     const days = [...(main.current?.querySelectorAll<HTMLElement>('.week-day') ?? [])];
-    days.find((el) => el.dataset.date! >= jump.date)?.scrollIntoView({ block: 'start' });
+    (days.find((el) => el.dataset.date! >= jump.date) ?? days[days.length - 1])?.scrollIntoView({ block: 'start' });
   }, [jump]);
   const t = today(now);
 
@@ -36,7 +37,7 @@ export function Week({ promo, schedule, changes, now, retry }: {
       <header class="view-head week-head">
         <div class="head-row">
           <span class="promo-pill">{promoLabel(promo)}</span>
-          {s && monday && <DatePick weeks={s.weeks} value={mondayOf(t) === monday ? t : monday}
+          {s && monday && <DatePick weeks={s.weeks} value={jump && mondayOf(jump.date) === monday ? jump.date : mondayOf(t) === monday ? t : monday}
             onPick={(d) => { setPicked({ value: mondayOf(d), on: t }); setJump({ date: d, n: (jump?.n ?? 0) + 1 }); }} />}
         </div>
         {monday && (
