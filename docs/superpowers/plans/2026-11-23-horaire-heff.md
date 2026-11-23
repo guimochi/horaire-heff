@@ -403,4 +403,4 @@ Comportements (maquette `design/Main|Week|Changes.dc.html`) :
 - [ ] **Step 4:** Lancer `sync.yml` via `workflow_dispatch` → `GET /api/promos` renvoie ~100 promotions.
 - [ ] **Step 5 (iPhone, iOS ≥ 16.4) :** ouvrir l'URL dans Safari → écran Installer ; ajouter à l'écran d'accueil ; ouvrir depuis l'icône → choisir `BA3 - S3 - EPS` → « Activer les notifications » → accepter. Relancer `sync.yml` : l'instantané apparaît dans Jour/Semaine.
 - [ ] **Step 6:** Test de notification : `PUT /api/admin/state/BA3%20-%20S3%20-%20EPS` avec un `snapshot` où un cours futur a un autre local, puis relancer `sync.yml` → notification « Changement de local » reçue, le toucher ouvre Changements.
-- [ ] **Step 7:** `git commit -am "chore: deployment config"` et partager le lien `*.pages.dev` à l'utilisatrice.
+- [ ] **Step 7:** `git commit -am "chore: deployment config"` et partager le lien `*.pages.dev`.
