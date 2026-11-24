@@ -47,6 +47,21 @@ describe('parseCourse', () => {
     expect(parseCourse({ ...raw, lines: ['AFP1 /AFP2 /AFP3', 'Lemaire Alain', 'Renard Hélène', '3 EDP', '1.2.07', '1.2.11 - Local Levillez'] }, '2026-12-07', groups))
       .toMatchObject({ teacher: 'Lemaire Alain, Renard Hélène', group: '3 EDP', room: '1.2.07, 1.2.11 - Local Levillez', extra: [] });
   });
+  // No group line: the list view's Enseignant names split teachers from rooms (grid lines carry no hint).
+  it('no group, two teachers: the second is a teacher, not a room', () => {
+    expect(parseCourse({ ...raw, lines: ['AFP 1', 'Leroy Anne', 'Renard Hélène', '1.1.06'] }, '2026-11-23', groups, ['Renard Hélène', 'Leroy Anne']))
+      .toMatchObject({ teacher: 'Leroy Anne, Renard Hélène', room: '1.1.06', group: '' });
+  });
+  it('no group, room without a digit', () => {
+    expect(parseCourse({ ...raw, lines: ['Natation 2', 'Leroy Anne', 'Simon Louis', 'Bain Bruxelles'] }, '2026-11-23', groups, ['Leroy Anne', 'Simon Louis']))
+      .toMatchObject({ teacher: 'Leroy Anne, Simon Louis', room: 'Bain Bruxelles' });
+  });
+  it('no group, teachers only / room only', () => {
+    expect(parseCourse({ ...raw, lines: ['AFP 1', 'Leroy Anne', 'Renard Hélène'] }, '2026-11-23', groups, ['Leroy Anne', 'Renard Hélène']))
+      .toMatchObject({ teacher: 'Leroy Anne, Renard Hélène', room: '' });
+    expect(parseCourse({ ...raw, lines: ['Stage', 'Gymnase Buls'] }, '2026-11-23', groups, []))
+      .toMatchObject({ teacher: '', room: 'Gymnase Buls' });
+  });
   it('several groups are joined', () => {
     expect(parseCourse({ ...raw, lines: ['I.A en éducation', 'Simon Louis', 'BA3 - S3 - FEPC', 'BA3 - S3 - FFLE', 'BA3 - S3 - SH', '1.1.05 (informatique)'] }, '2026-11-23', groups))
       .toMatchObject({ teacher: 'Simon Louis', group: 'BA3 - S3 - FEPC, BA3 - S3 - FFLE, BA3 - S3 - SH', room: '1.1.05 (informatique)' });

@@ -7,7 +7,8 @@ const ARIA = /^Cours du (\d+)(?:er)? (\S+) de (\d+) heures (\d+) à (\d+) heures
 const pad = (n: number) => String(n).padStart(2, '0');
 
 // `groups`: group names seen as links in the grid (scrape.ts). Without it, a line containing " - " is a group.
-export function parseCourse(raw: RawCourse, weekStart: string, groups?: string[]): Course {
+// `teachers`: names from the list view's Enseignant column (scrape.ts), for courses without a group line.
+export function parseCourse(raw: RawCourse, weekStart: string, groups?: string[], teachers?: string[]): Course {
   const m = raw.aria.match(ARIA);
   const month = m ? MONTHS.indexOf(m[2]) + 1 : 0;
   if (!m || !month) throw new Error(`Hyperplanning: aria non reconnu: "${raw.aria}"`);
@@ -27,8 +28,12 @@ export function parseCourse(raw: RawCourse, weekStart: string, groups?: string[]
     group = body.slice(g0, g1).join(', ');
     after = body.slice(g1);
   } else {
-    // shortcut: no group anchor -> positional (teacher, room); a lone [subject, X] reads X as teacher. Upgrade via the details popup if it matters.
-    [teacher = '', ...after] = body;
+    // No group anchor: the grid can't tell a second teacher from a room ("Gymnase Buls"). Teachers come first, so the known
+    // teacher names lead and the rest are rooms. Without the list (unread), positional: [teacher, ...rooms].
+    const n = teachers ? body.findIndex((l) => !teachers.includes(l)) : Math.min(1, body.length);
+    const k = n < 0 ? body.length : n;
+    teacher = body.slice(0, k).join(', ');
+    after = body.slice(k);
     group = '';
   }
   return {

@@ -43,6 +43,12 @@ Si les deux clés publiques diffèrent, les abonnements sont créés avec une cl
 - GitHub ne lance les workflows planifiés (`sync`, `keepalive`) que depuis la branche par défaut. Fusionne d'abord dans `main`.
 - `keepalive` pousse un commit par mois sur la branche par défaut, pour que GitHub ne désactive pas les crons après 60 jours sans activité. Si la branche est protégée, autorise `github-actions[bot]` à y pousser, sinon `keepalive` échoue.
 - `sync` tourne aux minutes 4 et 34, de 6 h à 22 h (heure de Bruxelles), du lundi au samedi. Un run dure 15 min au plus : au-delà, les promotions restantes sont sautées et lues au passage suivant.
+- **Le planning de GitHub ne suffit pas** : il retarde ou saute des runs sans prévenir (le 24/11/2026, aucun run planifié avant midi). Le Worker `cron/` (Cloudflare) lance donc `sync` par `workflow_dispatch` aux mêmes minutes. Le cron GitHub reste en secours.
+  1. Crée un jeton GitHub *fine-grained* : dépôt `horaire-heff` seulement, permission **Actions : Read and write**, expiration 1 an (note la date : à son expiration, la synchro s'arrête et l'app affiche « peut-être pas à jour »).
+  2. `npx wrangler deploy -c cron/wrangler.toml`
+  3. `npx wrangler secret put GH_TOKEN -c cron/wrangler.toml` (colle le jeton).
+  4. Vérifie : Workers & Pages › `horaire-heff-cron` › Cron Events, puis un run `workflow_dispatch` toutes les 30 min dans l'onglet Actions.
+- **Après un changement du lecteur** qui modifie des valeurs déjà publiées (ex. un prof lu comme local) : lance une fois `gh workflow run sync -f silent=true`. Le run publie la nouvelle lecture sans créer de changements ni notifier.
 
 ## 5. Risque d'abus restant
 

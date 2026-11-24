@@ -1,7 +1,7 @@
 import type { Page } from 'playwright';
 import type { Course } from '../shared/types';
 import { HP_URL } from '../shared/hp';
-import { mondayOf, MONTHS } from '../shared/time';
+import { addDays, mondayOf, MONTHS } from '../shared/time';
 import { parseCourse, type RawCourse } from './parse';
 
 // Public guest space only (HP_URL). Grid view ("Emploi du temps > en grille", the default on load).
@@ -47,7 +47,8 @@ export function weekIndexes(options: WeekOption[], weeks: string[]): number[] {
   });
 }
 
-export type RawWeek = { weekLabel: string; weekStart: string; disabled: boolean; groups: string[]; courses: RawCourse[] };
+// `teachers`: the list view's Enseignant names for the week; absent when that view could not be read.
+export type RawWeek = { weekLabel: string; weekStart: string; disabled: boolean; groups: string[]; courses: RawCourse[]; teachers?: string[] };
 
 const promoBox = (page: Page) => page.getByRole('combobox', { name: 'Sélectionnez une [classe]' });
 const promoOptions = (page: Page) => page.getByRole('navigation', { name: 'Menu de troisième niveau' }).getByRole('option');
@@ -151,14 +152,69 @@ export async function scrapePromoRaw(page: Page, promo: string, weeks: string[])
     const { courses, groups } = cur;
     out.push({ weekLabel: label, weekStart, disabled, groups, courses });
   }
+  await readTeachers(page, indexes, out);
   return out;
+}
+
+/** "23 novembre 2026" for each day of the week: the list view's day headers ("lundi 23 novembre 2026", "1er"). */
+export const dayLabels = (weekStart: string) => [0, 1, 2, 3, 4, 5, 6].map((n) => {
+  const [y, m, d] = addDays(weekStart, n).split('-');
+  return `${+d} ${MONTHS[+m - 1]} ${y}`;
+});
+
+// Read in the page: no closure. Day header rows start with the weekday, course rows with "08h00 - 10h00".
+const readList = (main: Element) => {
+  const heads = [...main.querySelectorAll('[role="columnheader"]')].map((h) => (h.textContent ?? '').trim());
+  const col = heads.indexOf('Enseignant');
+  const days: string[] = [];
+  const teachers = new Set<string>();
+  let rows = 0;
+  for (const r of main.querySelectorAll('[role="row"]')) {
+    const cells = (r.getAttribute('aria-owns') ?? '').trim().split(/\s+/).map((id) => document.getElementById(id));
+    const first = (cells[0]?.textContent ?? '').replace(/\s+/g, ' ').trim();
+    if (/^\d{2}h\d{2} - \d{2}h\d{2}/.test(first)) {
+      rows++;
+      for (const t of ((cells[col] as HTMLElement | null)?.innerText ?? '').split('\n')) if (t.trim()) teachers.add(t.replace(/\s+/g, ' ').trim());
+    } else if (/^\S+ \d+(?:er)? \S+ \d{4}$/.test(first)) days.push(first.replace(/ (\d+)er /, ' $1 '));
+  }
+  return { col, rows, days, teachers: [...teachers] };
+};
+
+/** The grid can't tell teachers from rooms on a course without a group line; the list view has an Enseignant column.
+ * A week whose list can't be matched to its grid (other week shown, other course count) keeps `teachers` unset. */
+async function readTeachers(page: Page, indexes: number[], out: RawWeek[]): Promise<void> {
+  if (!out.some((w) => w.courses.length)) return;
+  try {
+    await page.locator('li[data-genre="DIPLOME.EDT.EDT_LISTE"]').dispatchEvent('click');
+    await page.getByRole('heading', { name: 'en liste' }).waitFor();
+    const main = page.getByRole('main');
+    const weekList = main.getByRole('listbox', { name: /^Multi-s/ });
+    for (const [k, w] of out.entries()) {
+      if (w.disabled || w.courses.length === 0) continue;
+      const opt = weekList.getByRole('option').nth(indexes[k]);
+      if ((await opt.getAttribute('aria-selected')) !== 'true') await opt.click();
+      const days = dayLabels(w.weekStart);
+      // Two identical matching reads: a list caught mid-render would turn teachers into rooms (false "local" alerts).
+      let prev = '';
+      for (const deadline = Date.now() + TIMEOUT; Date.now() < deadline; await page.waitForTimeout(SETTLE_MS)) {
+        const r = await main.evaluate(readList);
+        const cur = JSON.stringify(r);
+        // Hyperplanning hides an empty column: a matching list without Enseignant is a week without teachers.
+        if (cur === prev && r.rows === w.courses.length && r.days.every((d) => days.some((x) => d.endsWith(x)))) { w.teachers = r.teachers; break; }
+        prev = cur;
+      }
+      if (!w.teachers) console.warn(`sync: liste illisible, semaine ${w.weekStart}`); // grid order is used instead
+    }
+  } catch (e) {
+    console.warn(`sync: liste illisible: ${(e as Error).message.split('\n')[0]}`);
+  }
 }
 
 // Disabled weeks are omitted from `weeks`: "not published" must never read as "no courses".
 export function readWeeks(raw: RawWeek[]): { courses: Course[]; weeks: string[] } {
   const read = raw.filter((w) => !w.disabled);
   const courses = read.flatMap((w) => w.courses.map((r) => {
-    const c = parseCourse(r, w.weekStart, w.groups);
+    const c = parseCourse(r, w.weekStart, w.groups, w.teachers);
     if (mondayOf(c.date) !== w.weekStart) throw new Error(`Hyperplanning: cours hors semaine ${w.weekStart}: ${r.aria}`);
     return c;
   }));

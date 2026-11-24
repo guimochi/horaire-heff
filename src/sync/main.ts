@@ -17,7 +17,8 @@ const MAX_WATCHED_ONLY = 12;
 const RUN_BUDGET_MS = 15 * 60_000;
 const MAX_LIST_DROP = 0.1;
 
-export async function runOnce(deps: { now: Date; deadline?: Date; api: ApiClient;
+// `silent`: publish what is read without recording changes nor pushing (once, after a reader fix moves stored values).
+export async function runOnce(deps: { now: Date; deadline?: Date; api: ApiClient; silent?: boolean;
   scrape: (promo: string, weeks: string[]) => Promise<{ courses: Course[]; weeks: string[] }>;
   scrapeList: () => Promise<string[]>; push: typeof sendAll }): Promise<{ promos: number; changes: number; failed: string[]; skipped: string[] }> {
   const { now, api } = deps;
@@ -119,7 +120,7 @@ export async function runOnce(deps: { now: Date; deadline?: Date; api: ApiClient
           continue;
         }
 
-        const changes = prev ? diffSnapshots(prev, publish, nowIso) : [];
+        const changes = prev && !deps.silent ? diffSnapshots(prev, publish, nowIso) : [];
         const body: Parameters<ApiClient['putState']>[1] = {};
         if (!prev || canon(prev) !== canon(publish)) body.snapshot = publish;
         if (changes.length) body.newChanges = changes;
@@ -169,6 +170,7 @@ async function cli(): Promise<number> {
   try {
     const res = await runOnce({
       now: new Date(), deadline: new Date(Date.now() + RUN_BUDGET_MS), api: createApiClient(env.API_BASE!, env.ADMIN_TOKEN!), push: sendAll,
+      silent: env.SYNC_SILENT === 'true',
       scrape: async (promo, weeks) => scrapePromo(await getPage(), promo, weeks),
       scrapeList: async () => scrapePromoList(await getPage()),
     });

@@ -18,6 +18,7 @@
     "tests",
     "scripts",
     "functions",
+    "cron",
     "vite.config.ts"
   ]
 }

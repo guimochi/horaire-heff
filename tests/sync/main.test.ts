@@ -236,6 +236,19 @@ describe('runOnce', () => {
     expect(d.push.mock.calls[0][2]).toBe(43200); // course ends tomorrow: capped at 12 h
   });
 
+  it('silent_republishes_without_changes_or_push', async () => {
+    // After a reader fix the stored values move ("T2, R1" -> "R1"): publish them without telling anyone.
+    const f = fakeApi({ subs: [sub('h1', 'A')], state: { A: { snapshot: snap('A', six()), pending: null } } });
+    const fixed = six().map((x, i) => (i === 0 ? { ...x, room: 'R9' } : x));
+    const d = { ...deps(f.api, { A: { courses: fixed, weeks: W }, B: { courses: six(), weeks: W } }), silent: true };
+    const res = await runOnce(d);
+    expect(res.changes).toBe(0);
+    const body = f.named('putState')[0][2] as Record<string, unknown>;
+    expect(Object.keys(body)).toStrictEqual(['snapshot']);
+    expect(f.state.get('A')?.snapshot?.courses[0].room).toBe('R9');
+    expect(d.push).not.toHaveBeenCalled();
+  });
+
   it('no_change_writes_nothing', async () => {
     const f = fakeApi({ subs: [sub('h1', 'A')], state: { A: { snapshot: snap('A', six(), '2026-11-20T10:00:00.000Z'), pending: null } } });
     const d = deps(f.api, { A: { courses: six().reverse(), weeks: W } });

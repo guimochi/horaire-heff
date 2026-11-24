@@ -5,7 +5,13 @@ on:
     # Wide UTC window covers both CET and CEST; isInRunWindow filters to Brussels hours.
     # Minute 4/34, not 0/30: top-of-hour schedules are the ones GitHub delays or drops under load.
     - cron: '4,34 4-21 * * 1-6'
+  # Also dispatched every 30 min by cron/ (Cloudflare): GitHub's own schedule drops runs.
   workflow_dispatch:
+    inputs:
+      silent:
+        description: 'Publish without recording changes or notifying (once, after a reader fix)'
+        type: boolean
+        default: false
 
 concurrency:
   group: sync
@@ -37,3 +43,4 @@ jobs:
           VAPID_SUBJECT: ${{ secrets.VAPID_SUBJECT }}
           VAPID_PUBLIC_KEY: ${{ secrets.VAPID_PUBLIC_KEY }}
           VAPID_PRIVATE_KEY: ${{ secrets.VAPID_PRIVATE_KEY }}
+          SYNC_SILENT: ${{ inputs.silent }}

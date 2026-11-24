@@ -1,0 +1,9 @@
+# Separate Worker: Pages Functions have no cron. Deploy: npx wrangler deploy -c cron/wrangler.toml
+# Secret: npx wrangler secret put GH_TOKEN -c cron/wrangler.toml (fine-grained token, this repo only, Actions: read and write)
+name = "horaire-heff-cron"
+main = "index.ts"
+compatibility_date = "2026-11-01"
+workers_dev = false
+
+[triggers]
+crons = ["4,34 4-21 * * 1-6"]

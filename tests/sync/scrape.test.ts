@@ -1,6 +1,6 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { checkGridCounts, readWeeks, settle, weekIndexes, type RawWeek } from '../../src/sync/scrape';
+import { checkGridCounts, dayLabels, readWeeks, settle, weekIndexes, type RawWeek } from '../../src/sync/scrape';
 
 const fx = (f: string): RawWeek => ({ ...JSON.parse(readFileSync(new URL(`../fixtures/${f}`, import.meta.url), 'utf8')), disabled: false });
 
@@ -14,6 +14,11 @@ describe('readWeeks', () => {
   it('keeps an enabled empty week', () => {
     const empty: RawWeek = { weekLabel: 'Semaine 12, du 23/11/2026 au 28/11/2026', weekStart: '2026-11-23', disabled: false, groups: [], courses: [] };
     expect(readWeeks([empty])).toEqual({ courses: [], weeks: ['2026-11-23'] });
+  });
+  it('passes the week\'s teacher names to the parser', () => {
+    const course = { aria: 'Cours du 24 novembre de 9 heures 00 à 12 heures 00', lines: ['AFP 1', 'Leroy Anne', 'Renard Hélène', '1.1.06'], cancelledMarker: false };
+    const w: RawWeek = { weekLabel: '', weekStart: '2026-11-23', disabled: false, groups: [], courses: [course], teachers: ['Leroy Anne', 'Renard Hélène'] };
+    expect(readWeeks([w]).courses[0]).toMatchObject({ teacher: 'Leroy Anne, Renard Hélène', room: '1.1.06' });
   });
   it('throws on a course outside its week (stale grid)', () => {
     const w = fx('courses-2026-11-23.json');
@@ -64,5 +69,11 @@ describe('settle', () => {
     const waits: number[] = [];
     expect(await settle(seq(3, 4, 4), async (ms) => { waits.push(ms); }, empty, 'x')).toBe(4);
     expect(waits).toEqual([300, 300]);
+  });
+});
+
+describe('dayLabels', () => {
+  it('matches the list view\'s day headers across a month change', () => {
+    expect(dayLabels('2026-11-30')).toEqual(['30 novembre 2026', '1 décembre 2026', '2 décembre 2026', '3 décembre 2026', '4 décembre 2026', '5 décembre 2026', '6 décembre 2026']);
   });
 });
