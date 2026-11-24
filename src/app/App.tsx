@@ -8,7 +8,7 @@ import { Day } from './views/Day';
 import { Week } from './views/Week';
 import { Changes } from './views/Changes';
 import { Settings } from './views/Settings';
-import { TabBar } from './components/TabBar';
+import { TabBar, slideDir, swipeTarget } from './components/TabBar';
 import { Install } from './onboarding/Install';
 import { Promo } from './onboarding/Promo';
 import { Notifs } from './onboarding/Notifs';
@@ -68,8 +68,19 @@ function Shell({ promo, route, onPromo }: { promo: string; route: Route; onPromo
 
   const unread = lastSeenAt === null ? 0 : changesModel(changes ?? [], clearedAt, lastSeenAt).unread;
   const data = { promo, schedule, changes, now, retry };
+  const touch = useRef<{ x: number; y: number } | null>(null);
+  // Set only on a route change (lastRoute catches up in an effect), so later renders don't cancel the running animation.
+  const dir = useRef<string | null>(null);
+  if (lastRoute.current !== route) dir.current = slideDir(lastRoute.current, route);
   return (
-    <div class="app">
+    <div class="app" data-slide={dir.current ?? undefined}
+      onTouchStart={(e) => { const t = e.touches[0]; touch.current = e.touches.length === 1 ? { x: t.clientX, y: t.clientY } : null; }}
+      onTouchEnd={(e) => {
+        const start = touch.current, t = e.changedTouches[0];
+        touch.current = null;
+        const to = start && swipeTarget(route, t.clientX - start.x, t.clientY - start.y);
+        if (to) location.hash = `#/${to}`;
+      }}>
       {route === 'jour' && <Day {...data} />}
       {route === 'semaine' && <Week {...data} />}
       {route === 'changements' && <Changes promo={promo} schedule={schedule} changes={changes} now={now} seenBefore={seenBefore}

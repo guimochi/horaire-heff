@@ -132,6 +132,11 @@ a { color: var(--accent); text-decoration: none; }
 /* App views (design/Main|Week|Changes.dc.html). Header and content scroll; the tab bar stays at the bottom. */
 :root { --line: #DEDCD5; --row-line: #EEECE6; --tab-line: #E4E2DC; --dot: #B4500B; --badge: #B4500B; }
 .app { height: 100dvh; display: flex; flex-direction: column; overflow: hidden; }
+.app[data-slide="next"] > .view { animation: slide-from-right 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); }
+.app[data-slide="prev"] > .view { animation: slide-from-left 0.28s cubic-bezier(0.2, 0.8, 0.2, 1); }
+@keyframes slide-from-right { from { transform: translateX(40%); opacity: 0; } }
+@keyframes slide-from-left { from { transform: translateX(-40%); opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .app[data-slide] > .view { animation: none; } }
 .app .promo { height: auto; flex: 1; min-height: 0; }
 .promo-cancel { align-self: center; margin-top: -8px; }
 .view { flex: 1; min-height: 0; overflow-y: auto; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; display: flex; flex-direction: column; }
