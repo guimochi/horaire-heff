@@ -18,7 +18,8 @@ export function notificationFor(changes: Change[], now: Date): { title: string; 
   const live = changes.filter((c) => brusselsInstant(ref(c).date, mins(ref(c).end)) > now);
   if (live.length === 0) return null;
   if (live.length >= 2) {
-    const subjects = [...new Set(live.map((c) => ref(c).subject))];
+    // The day, so a change today never reads like one in three weeks.
+    const subjects = [...new Set(live.map((c) => `${ref(c).subject} · ${day(ref(c).date, today)}`))];
     const body = subjects.slice(0, 3).join(', ') + (subjects.length > 3 ? '…' : '');
     return { title: `${live.length} changements dans ton horaire`, body, url };
   }
@@ -32,13 +33,13 @@ export function notificationFor(changes: Change[], now: Date): { title: string; 
     case 'local': return { title: 'Changement de local', body: `${head} → ${a!.room ? `local ${a!.room}` : 'local non précisé'}${insteadOf(b!.room)}.`, url };
     case 'horaire': return { title: 'Horaire modifié',
       body: `${k.subject} · ${d} : ${a!.start}–${a!.end} (au lieu de ${b!.start}–${b!.end}).`, url };
-    case 'ajoute': return { title: 'Cours ajouté',
+    case 'ajoute': return { title: b ? 'Cours rétabli' : 'Cours ajouté', // `before` is set only when un-cancelled
       body: `${k.subject} · ${d} ${k.start}–${k.end}${k.room ? ` · ${k.room}` : ''}.`, url };
     case 'deplace': return { title: 'Cours déplacé',
       body: `${k.subject} · ${day(b!.date, today)} ${b!.start} → ${d} ${a!.start}.`, url };
     case 'enseignant': return { title: 'Enseignant modifié',
       body: `${head} · ${a!.teacher ? `avec ${a!.teacher}` : 'sans enseignant'}${insteadOf(b!.teacher)}.`, url };
-    default: return { title: 'Cours modifié', body: `${head} · détails mis à jour.`, url };
+    default: return { title: 'Cours modifié', body: a?.extra.length ? `${head} · ${a.extra.join(' · ')}` : `${head} · détails mis à jour.`, url };
   }
 }
 

@@ -38,6 +38,13 @@ describe('notificationFor', () => {
     expect(notificationFor([ch('ajoute', null, a)], NOW)).toEqual({
       title: 'Cours ajouté', body: 'Sports et jeux · jeudi 13:30–16:30 · Sport 6 TC.', url });
   });
+  it('un-cancelled course is rétabli', () => {
+    expect(notificationFor([ch('ajoute', c({ cancelled: true }), c({}))], NOW)?.title).toBe('Cours rétabli');
+  });
+  it('grouped names the day of each change', () => {
+    const l = [ch('annule', c({ date: '2026-11-23', end: '23:00' }), null), ch('annule', c({ subject: 'Physio', date: '2026-12-10' }), null)];
+    expect(notificationFor(l, NOW)?.body).toBe("AFP 3 · aujourd'hui, Physio · jeudi 10 déc.");
+  });
   it('ajoute without room omits it', () => {
     expect(notificationFor([ch('ajoute', null, c({ subject: 'Sports et jeux', start: '13:30', end: '16:30' }))], NOW)?.body)
       .toBe('Sports et jeux · jeudi 13:30–16:30.');
@@ -56,8 +63,9 @@ describe('notificationFor', () => {
       .toBe('AFP 3 · jeudi 10:00 · sans enseignant (au lieu de Leroy Anne).');
   });
   it('autre', () => {
-    expect(notificationFor([ch('autre', c({}), c({ extra: ['x'] }))], NOW)).toEqual({
-      title: 'Cours modifié', body: 'AFP 3 · jeudi 10:00 · détails mis à jour.', url });
+    expect(notificationFor([ch('autre', c({}), c({ extra: ['Mémo = salle B'] }))], NOW)).toEqual({
+      title: 'Cours modifié', body: 'AFP 3 · jeudi 10:00 · Mémo = salle B', url });
+    expect(notificationFor([ch('autre', c({ group: 'A' }), c({ group: 'B' }))], NOW)?.body).toBe('AFP 3 · jeudi 10:00 · détails mis à jour.');
   });
   it('past_course_change_is_ignored', () => {
     const past = c({ date: '2026-11-23', start: '08:00', end: '09:30' });
@@ -70,11 +78,11 @@ describe('notificationFor', () => {
   it('grouped_three', () => {
     const a = c({ subject: 'Act. gymniques 5' }), b = c({ subject: 'AFP 3' }), p = c({ subject: 'Physiologie 5' });
     expect(notificationFor([ch('annule', a, null), ch('annule', b, null), ch('annule', p, null)], NOW)).toEqual({
-      title: '3 changements dans ton horaire', body: 'Act. gymniques 5, AFP 3, Physiologie 5', url });
+      title: '3 changements dans ton horaire', body: 'Act. gymniques 5 · jeudi, AFP 3 · jeudi, Physiologie 5 · jeudi', url });
   });
   it('grouped distinct subjects, truncated after 3', () => {
     const l = ['A', 'A', 'B', 'C', 'D'].map((s) => ch('annule', c({ subject: s }), null));
-    expect(notificationFor(l, NOW)).toEqual({ title: '5 changements dans ton horaire', body: 'A, B, C…', url });
+    expect(notificationFor(l, NOW)).toEqual({ title: '5 changements dans ton horaire', body: 'A · jeudi, B · jeudi, C · jeudi…', url });
   });
   it('relative_day_rules', () => {
     const body = (date: string) => notificationFor([ch('annule', c({ date }), null)], NOW)?.body;
