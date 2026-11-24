@@ -181,32 +181,28 @@ const readList = (main: Element) => {
 };
 
 /** The grid can't tell teachers from rooms on a course without a group line; the list view has an Enseignant column.
- * A week whose list can't be matched to its grid (other week shown, other course count) keeps `teachers` unset. */
+ * Unreadable = the promo fails like an unreadable grid: the grid's order alone would flip stored rooms (false alerts). */
 async function readTeachers(page: Page, indexes: number[], out: RawWeek[]): Promise<void> {
   if (!out.some((w) => w.courses.length)) return;
-  try {
-    await page.locator('li[data-genre="DIPLOME.EDT.EDT_LISTE"]').dispatchEvent('click');
-    await page.getByRole('heading', { name: 'en liste' }).waitFor();
-    const main = page.getByRole('main');
-    const weekList = main.getByRole('listbox', { name: /^Multi-s/ });
-    for (const [k, w] of out.entries()) {
-      if (w.disabled || w.courses.length === 0) continue;
-      const opt = weekList.getByRole('option').nth(indexes[k]);
-      if ((await opt.getAttribute('aria-selected')) !== 'true') await opt.click();
-      const days = dayLabels(w.weekStart);
-      // Two identical matching reads: a list caught mid-render would turn teachers into rooms (false "local" alerts).
-      let prev = '';
-      for (const deadline = Date.now() + TIMEOUT; Date.now() < deadline; await page.waitForTimeout(SETTLE_MS)) {
-        const r = await main.evaluate(readList);
-        const cur = JSON.stringify(r);
-        // Hyperplanning hides an empty column: a matching list without Enseignant is a week without teachers.
-        if (cur === prev && r.rows === w.courses.length && r.days.every((d) => days.some((x) => d.endsWith(x)))) { w.teachers = r.teachers; break; }
-        prev = cur;
-      }
-      if (!w.teachers) console.warn(`sync: liste illisible, semaine ${w.weekStart}`); // grid order is used instead
+  await page.locator('li[data-genre="DIPLOME.EDT.EDT_LISTE"]').dispatchEvent('click');
+  await page.getByRole('heading', { name: 'en liste' }).waitFor();
+  const main = page.getByRole('main');
+  const weekList = main.getByRole('listbox', { name: /^Multi-s/ });
+  for (const [k, w] of out.entries()) {
+    if (w.disabled || w.courses.length === 0) continue;
+    const opt = weekList.getByRole('option').nth(indexes[k]);
+    if ((await opt.getAttribute('aria-selected')) !== 'true') await opt.click();
+    const days = dayLabels(w.weekStart);
+    // Two identical matching reads: a list caught mid-render would turn teachers into rooms.
+    let prev = '';
+    for (const deadline = Date.now() + TIMEOUT; Date.now() < deadline; await page.waitForTimeout(SETTLE_MS)) {
+      const r = await main.evaluate(readList);
+      const cur = JSON.stringify(r);
+      // Hyperplanning hides an empty column: a matching list without Enseignant is a week without teachers.
+      if (cur === prev && r.rows === w.courses.length && r.days.every((d) => days.some((x) => d.endsWith(x)))) { w.teachers = r.teachers; break; }
+      prev = cur;
     }
-  } catch (e) {
-    console.warn(`sync: liste illisible: ${(e as Error).message.split('\n')[0]}`);
+    if (!w.teachers) throw new Error(`Hyperplanning: liste illisible, semaine ${w.weekStart}`);
   }
 }
 

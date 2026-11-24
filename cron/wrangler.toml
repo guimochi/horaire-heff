@@ -6,4 +6,4 @@ compatibility_date = "2026-11-01"
 workers_dev = false
 
 [triggers]
-crons = ["4,34 4-21 * * 1-6"]
+crons = ["4,34 4-21 * * MON-SAT"] # names, not numbers: weekday numbering differs between cron dialects
