@@ -29,7 +29,7 @@ export function parseCourse(raw: RawCourse, weekStart: string, groups?: string[]
     after = body.slice(g1);
   } else {
     // No group anchor: the grid can't tell a second teacher from a room ("Gymnase Buls"). Teachers come first, so the known
-    // teacher names lead and the rest are rooms. Without the list (unread), positional: [teacher, ...rooms].
+    // teacher names lead and the rest are rooms. Callers without a list (old fixtures): positional, [teacher, ...rooms].
     const n = teachers ? body.findIndex((l) => !teachers.includes(l)) : Math.min(1, body.length);
     const k = n < 0 ? body.length : n;
     teacher = body.slice(0, k).join(', ');

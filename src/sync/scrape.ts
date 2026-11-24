@@ -162,8 +162,9 @@ export const dayLabels = (weekStart: string) => [0, 1, 2, 3, 4, 5, 6].map((n) =>
   return `${+d} ${MONTHS[+m - 1]} ${y}`;
 });
 
-// Read in the page: no closure. Day header rows start with the weekday, course rows with "08h00 - 10h00".
-const readList = (main: Element) => {
+// Runs in the page (no closure). Course rows start with "08h00 - 10h00", day header rows with "lundi 23 novembre 2026";
+// `days` keeps the date without the weekday ("1er" -> "1"). A cell holds one <div> per name.
+export const readList = (main: Element) => {
   const heads = [...main.querySelectorAll('[role="columnheader"]')].map((h) => (h.textContent ?? '').trim());
   const col = heads.indexOf('Enseignant');
   const days: string[] = [];
@@ -174,8 +175,11 @@ const readList = (main: Element) => {
     const first = (cells[0]?.textContent ?? '').replace(/\s+/g, ' ').trim();
     if (/^\d{2}h\d{2} - \d{2}h\d{2}/.test(first)) {
       rows++;
-      for (const t of ((cells[col] as HTMLElement | null)?.innerText ?? '').split('\n')) if (t.trim()) teachers.add(t.replace(/\s+/g, ' ').trim());
-    } else if (/^\S+ \d+(?:er)? \S+ \d{4}$/.test(first)) days.push(first.replace(/ (\d+)er /, ' $1 '));
+      for (const d of cells[col]?.querySelectorAll('div') ?? []) {
+        const t = d.children.length ? '' : (d.textContent ?? '').replace(/\s+/g, ' ').trim();
+        if (t) teachers.add(t);
+      }
+    } else if (/^\S+ \d+(?:er)? \S+ \d{4}$/.test(first)) days.push(first.replace(/^\S+ (\d+)(?:er)? /, '$1 '));
   }
   return { col, rows, days, teachers: [...teachers] };
 };
@@ -199,7 +203,7 @@ async function readTeachers(page: Page, indexes: number[], out: RawWeek[]): Prom
       const r = await main.evaluate(readList);
       const cur = JSON.stringify(r);
       // Hyperplanning hides an empty column: a matching list without Enseignant is a week without teachers.
-      if (cur === prev && r.rows === w.courses.length && r.days.every((d) => days.some((x) => d.endsWith(x)))) { w.teachers = r.teachers; break; }
+      if (cur === prev && r.rows === w.courses.length && r.days.every((d) => days.includes(d))) { w.teachers = r.teachers; break; }
       prev = cur;
     }
     if (!w.teachers) throw new Error(`Hyperplanning: liste illisible, semaine ${w.weekStart}`);
